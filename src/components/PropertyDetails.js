@@ -7,7 +7,7 @@ function PropertyDetails({ property }) {
           <div className="offer-type-wrap">
             <span className="offer-type bg-success">Location</span>
           </div>
-          <img src="images/img_1.jpg" alt="Image" className="img-fluid" />
+          <img src="https://scontent.ftnr4-1.fna.fbcdn.net/v/t39.30808-6/289813430_5303706209665901_1608546722638759392_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=8bfeb9&_nc_eui2=AeGBKNcQw_f4OAAGEaL6Iutt3-qjPhsK-qPf6qM-Gwr6o_GGACAzzibGiEsXaPb15wmg7-IiUe4LjZrVTeqDh76o&_nc_ohc=HFCUNBwcgEYAX_Ha7jy&_nc_zt=23&_nc_ht=scontent.ftnr4-1.fna&oh=00_AfCfeWBF15Pp3mX5j-tdrhX37GELDtJpfuWADff1Prl1OA&oe=640F48CC" alt="Image" className="img-fluid" />
         </a>
         <div className="p-4 property-body">
           <a
@@ -23,8 +23,8 @@ function PropertyDetails({ property }) {
             <a href="property-details.html">{property.title}</a>
           </h2>
           <span className="property-location d-block mb-3">
-            <span className="property-icon icon-room" /> 625 S. Andrana St Unit
-            607 Los Angeles, CA 90005
+            <span className="property-icon icon-room" /> 625 S. {property.city.quarter} St Unit
+            607 {property.city.cityname}, CA 90005
           </span>
           <strong className="property-price text-primary mb-3 d-block text-success">
             $2,265,500
