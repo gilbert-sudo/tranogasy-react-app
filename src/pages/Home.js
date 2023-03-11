@@ -3,6 +3,8 @@ import PropertyDetails from "../components/PropertyDetails";
 import Paging from "../components/Paging";
 import SearchForm from "../components/SearchForm";
 import PropertyFilter from "../components/PropertyFilter";
+import Carousel from "../components/Carousel";
+import Footer from "../components/Footer";
 
 const Home = () => {
   const [properties, setProperties] = useState(null);
@@ -28,6 +30,7 @@ const Home = () => {
 
   return (
     <div>
+      <Carousel />
       <div className="site-section site-section-sm pb-0">
         <div className="container">
           <SearchForm />
@@ -45,6 +48,7 @@ const Home = () => {
           <Paging />
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };

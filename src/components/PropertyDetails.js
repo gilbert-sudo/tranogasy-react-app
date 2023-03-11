@@ -1,14 +1,19 @@
+import { Link } from "react-router-dom";
+
 
 function PropertyDetails({ property }) {
+
   return (
     <div className="col-md-6 col-lg-4 mb-4">
       <div className="property-entry h-100">
-        <a href="#" className="property-thumbnail">
+        <Link to="/PropertyDetailsPage">
+        <a className="property-thumbnail">
           <div className="offer-type-wrap">
             <span className="offer-type bg-success">Location</span>
           </div>
           <img src={property.images.length > 0 ? property.images[0].url : ''} alt="" className="img-fluid" />
         </a>
+        </Link>
         <div className="p-4 property-body">
           <a
             className="property-favorite"
