@@ -1,17 +1,29 @@
-const Paging = () => {
+import {Link} from 'react-router-dom';
+const Paging = ({ currentPage, onPageChange, totalPage }) => {
+  const generatePageLinks = () => {
+    const links = [];
+
+    for (let i = 1; i <= totalPage; i++) {
+      links.push(
+        <Link
+          key={i}
+          to="/#prodisplay"
+          className={i === currentPage ? 'active' : ''}
+          onClick={() => onPageChange(i)}
+        >
+          {i}
+        </Link>
+      );
+    }
+
+    return links;
+  };
+
   return (
     <div className="row mb-2">
       <div className="col-md-12 text-center">
         <div className="site-pagination">
-          <a href="#" className="active">
-            1
-          </a>
-          <a href="#">2</a>
-          <a href="#">3</a>
-          <a href="#">4</a>
-          <a href="#">5</a>
-          <span>...</span>
-          <a href="#">10</a>
+          {generatePageLinks()}
         </div>
       </div>
     </div>
