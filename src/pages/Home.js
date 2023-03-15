@@ -7,7 +7,7 @@ import HomeSlider from "../components/HomeSlider";
 import Footer from "../components/Footer";
 
 const Home = () => {
-  const [properties, setProperties] = useState(null);
+  const [topProperties, setTopProperties] = useState(null);
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 3;
@@ -20,7 +20,7 @@ const Home = () => {
   const endIndex = startIndex + itemsPerPage;
 
   useEffect(() => {
-    const fetchProperties = async () => {
+    const fetchTopProperties = async () => {
       const response = await fetch(
         `${process.env.REACT_APP_PROXY}/api/top-properties`,
         {
@@ -32,10 +32,10 @@ const Home = () => {
       );
       const json = await response.json();
       if (response.ok) {
-        setProperties(json);
+        setTopProperties(json);
       }
     };
-    fetchProperties();
+    fetchTopProperties();
   }, []);
 
   return (
@@ -50,18 +50,18 @@ const Home = () => {
       <div className="site-section site-section-sm bg-light">
         <div className="container">
           <div className="row mb-5">
-            {properties &&
-              properties
+            {topProperties &&
+              topProperties
                 .slice(startIndex, endIndex)
                 .map((topProperty) => (
                   <PropertyDetails key={topProperty.property._id} topProperty={topProperty} />
                 ))}
           </div>
-          {properties && (
+          {topProperties && (
             <Paging
               currentPage={currentPage}
               onPageChange={handlePageChange}
-              totalPage={Math.ceil(properties.length / itemsPerPage)}
+              totalPage={Math.ceil(topProperties.length / itemsPerPage)}
             />
           )}
         </div>

@@ -7,7 +7,7 @@ function PropertyDetails({ topProperty }) {
     <div className="col-md-6 col-lg-4 mb-4">
       <div className="property-entry h-100">
         <Link to="/PropertyDetailsPage">
-        <a className="property-thumbnail">
+        <a href="/PropertyDetailsPage" className="property-thumbnail">
           <div className="offer-type-wrap">
             <span className="offer-type bg-success">Location</span>
           </div>
