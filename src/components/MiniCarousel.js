@@ -13,13 +13,13 @@ const MiniCarousel = () => {
     <div>
       <OwlCarousel className="slide-one-item home-slider owl-theme" {...options}>
         <div>
-          <img src="images/hero_bg_1.jpg" alt="Image" className="img-fluid" />
+          <img src="https://ik.imagekit.io/ryxb55mhk/Tranogasy/background/hero_bg_3.jpg" alt="Image" className="img-fluid" />
         </div>
         <div>
-          <img src="images/hero_bg_2.jpg" alt="Image" className="img-fluid" />
+          <img src="https://ik.imagekit.io/ryxb55mhk/Tranogasy/background/hero_bg_1.jpg" alt="Image" className="img-fluid" />
         </div>
         <div>
-          <img src="images/hero_bg_3.jpg" alt="Image" className="img-fluid" />
+          <img src="https://ik.imagekit.io/ryxb55mhk/Tranogasy/background/hero_bg_4.jpg" alt="Image" className="img-fluid" />
         </div>
       </OwlCarousel>
     </div>

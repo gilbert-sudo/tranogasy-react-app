@@ -3,7 +3,7 @@ const CarouselDetails = () => {
     <div>
       <div
         className="site-blocks-cover inner-page-cover overlay"
-        style={{ backgroundImage: "url(images/hero_bg_2.jpg)" }}
+        style={{ backgroundImage: "url(https://ik.imagekit.io/ryxb55mhk/Tranogasy/background/hero_bg_4.jpg)" }}
         data-aos="fade"
         data-stellar-background-ratio="0.5"
       >
@@ -25,7 +25,7 @@ const CarouselDetails = () => {
                     href="#contactAgent"
                     className="btn btn-white btn-outline-white py-3 px-3 rounded-0 btn-2"
                   >
-                    Entrer en contact
+                    Louer cette Maison
                   </a>
                 </p>
               </div>

@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 
 
-function PropertyDetails({ topProperty }) {
+function TopPropertyDetails({ topProperty }) {
 
   return (
     <div className="col-md-6 col-lg-4 mb-4">
       <div className="property-entry h-100">
-        <Link to="/PropertyDetailsPage">
-        <a href="/PropertyDetailsPage" className="property-thumbnail">
+        <Link to={`/property/${topProperty.property._id}`}>
+        <a href="/property" className="property-thumbnail">
           <div className="offer-type-wrap">
             <span className="offer-type bg-success">Location</span>
           </div>
@@ -56,4 +56,4 @@ function PropertyDetails({ topProperty }) {
   );
 }
 
-export default PropertyDetails;
+export default TopPropertyDetails;

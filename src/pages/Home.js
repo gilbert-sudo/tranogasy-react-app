@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import PropertyDetails from "../components/PropertyDetails";
+import TopPropertyDetails from "../components/TopPropertyDetails";
 import Paging from "../components/Paging";
 import SearchForm from "../components/SearchForm";
 import PropertyFilter from "../components/PropertyFilter";
@@ -54,7 +54,10 @@ const Home = () => {
               topProperties
                 .slice(startIndex, endIndex)
                 .map((topProperty) => (
-                  <PropertyDetails key={topProperty.property._id} topProperty={topProperty} />
+                  <TopPropertyDetails
+                    key={topProperty.property._id}
+                    topProperty={topProperty}
+                  />
                 ))}
           </div>
           {topProperties && (
