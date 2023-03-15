@@ -1,18 +1,21 @@
-import {Link} from 'react-router-dom';
+
 const Paging = ({ currentPage, onPageChange, totalPage }) => {
   const generatePageLinks = () => {
     const links = [];
 
     for (let i = 1; i <= totalPage; i++) {
       links.push(
-        <Link
+        <a
           key={i}
-          to="/#prodisplay"
+          href="/#prodisplay"
           className={i === currentPage ? 'active' : ''}
-          onClick={() => onPageChange(i)}
+          onClick={() => {
+            onPageChange(i);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
         >
           {i}
-        </Link>
+        </a>
       );
     }
 
