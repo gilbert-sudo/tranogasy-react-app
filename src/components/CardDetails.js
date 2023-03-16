@@ -25,7 +25,7 @@ const CardDetails = () => {
           </ul>
         </div>
       </div>
-      <div className="row mb-5">
+      <div className="row">
         <div className="col-md-6 col-lg-4 text-center border-bottom border-top py-3">
           <span className="d-inline-block text-black mb-0 caption-text">
             Home Type
@@ -45,7 +45,6 @@ const CardDetails = () => {
           <strong className="d-block">$520</strong>
         </div>
       </div>
-      <h2 className="h4 text-black">Localisation</h2>
     </div>
   );
 };

@@ -10,7 +10,7 @@ const Home = () => {
   const [topProperties, setTopProperties] = useState(null);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 3;
+  const itemsPerPage = 1;
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
