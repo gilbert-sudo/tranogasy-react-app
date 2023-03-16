@@ -28,6 +28,8 @@ const PropertyDetails = () => {
       }
     };
     fetchPropertyDetails();
+    // scroll to top of the page
+    window.scrollTo(0, 0);
   }, [id]);
 
   return (
@@ -41,10 +43,10 @@ const PropertyDetails = () => {
               <MiniCarousel />
               <CardDetails />
               <div className="bg-white widget border rounded">
-                <h3 className="h4 text-black widget-title mb-3">Déscription:</h3>
-                <p>
-                  {propertiesDetails && propertiesDetails.description}
-                </p>
+                <h3 className="h4 text-black widget-title mb-3">
+                  Déscription:
+                </h3>
+                <p>{propertiesDetails && propertiesDetails.description}</p>
               </div>
               <PropertyGallery />
             </div>
@@ -52,7 +54,6 @@ const PropertyDetails = () => {
               {/* agent contact form */}
               <ContactAgentForm />
               {/* agent contact form */}
-            
             </div>
           </div>
         </div>

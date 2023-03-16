@@ -2,7 +2,7 @@
 const CardDetails = () => {
   return (
     <div className="bg-white property-body border-bottom border-left border-right">
-      <div className="row mb-5">
+      <div className="row">
         <div className="col-md-6">
           <strong className="text-success h3 mb-3">1,000,500AR/mois</strong>
         </div>

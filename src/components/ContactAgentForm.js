@@ -2,7 +2,7 @@ const ContactAgentForm = () => {
   return (
     <div className="bg-white widget border rounded">
       <h3 className="h4 text-black widget-title mb-3">
-        Postuler pour cette maison
+      contacter l'agent immobilier
       </h3>
       <form action="" className="form-contact-agent">
         <div className="form-group">

@@ -18,7 +18,7 @@ const PropertyGallery = () => {
     <div className="bg-white property-body border-bottom border-left border-right p-0">
       <div className="row no-gutters mt-5">
         <div className="col-12">
-          <h2 className="h4 text-black mb-3">Galerie</h2>
+          <h2 className="h4 text-black mb-3">QUELQUES PHOTOS :</h2>
         </div>
         <div className="col-sm-6 col-md-4 col-lg-3">
           <a href="https://ik.imagekit.io/ryxb55mhk/Tranogasy/properties/img_6.jpg?updatedAt=1678881706834" className="image-popup gal-item">
