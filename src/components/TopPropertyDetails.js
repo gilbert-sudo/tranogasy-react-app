@@ -6,13 +6,11 @@ function TopPropertyDetails({ topProperty }) {
   return (
     <div className="col-md-6 col-lg-4 mb-4">
       <div className="property-entry h-100">
-        <Link to={`/property/${topProperty.property._id}`}>
-        <a href="/property" className="property-thumbnail">
+        <Link to={`/property/${topProperty.property._id}`} className="property-thumbnail">
           <div className="offer-type-wrap">
             <span className="offer-type bg-success">Location</span>
           </div>
           <img src={topProperty.images.length > 0 ? topProperty.images[0].url : ''} alt="" className="img-fluid" />
-        </a>
         </Link>
         <div className="p-4 property-body">
           <a

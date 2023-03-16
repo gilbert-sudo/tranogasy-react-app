@@ -1,9 +1,11 @@
-const CarouselDetails = () => {
+import { FaHome } from "react-icons/fa";
+
+const CarouselDetails = ({property}) => {
   return (
     <div>
       <div
         className="site-blocks-cover inner-page-cover overlay"
-        style={{ backgroundImage: "url(https://ik.imagekit.io/ryxb55mhk/Tranogasy/background/hero_bg_4.jpg)" }}
+        style={{ backgroundImage: `url(${property.images[0].url})` }}
         data-aos="fade"
         data-stellar-background-ratio="0.5"
       >
@@ -13,7 +15,7 @@ const CarouselDetails = () => {
               <span className="d-inline-block text-white px-3 mb-3 property-offer-type rounded">
                 Property Details of
               </span>
-              <h1 className="mb-2">625 S. Berendo St</h1>
+              <h1 className="mb-2">625 S. {property.city.quarter} St</h1>
               <p className="mb-5">
                 <strong className="h2 text-success font-weight-bold">
                   1,000,500 AR/mois
@@ -25,7 +27,7 @@ const CarouselDetails = () => {
                     href="#contactAgent"
                     className="btn btn-white btn-outline-white py-3 px-3 rounded-0 btn-2"
                   >
-                    Louer cette Maison
+                    <FaHome className="mr-2" /> Louer cette Maison
                   </a>
                 </p>
               </div>
