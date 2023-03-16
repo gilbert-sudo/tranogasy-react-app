@@ -22,10 +22,10 @@ const Paging = ({ currentPage, onPageChange, totalPage }) => {
         );
       }
     } else {
-      const start = Math.max(1, currentPage - 1);
+      const start = Math.max(1, currentPage -1);
       const end = Math.min(totalPage, currentPage + 1);
   
-      if (currentPage > 2) {
+      if (currentPage > 3) {
         links.push(
           <a
             key="leftEllipsis"
