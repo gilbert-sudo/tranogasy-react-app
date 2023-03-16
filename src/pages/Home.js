@@ -8,18 +8,19 @@ import Footer from "../components/Footer";
 
 const Home = () => {
   const [topProperties, setTopProperties] = useState(null);
-
+  
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 1;
 
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
+  const itemsPerPage = 2;
+ const onPageChange = (page) =>{
+  setCurrentPage(page);
+ }
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
 
   useEffect(() => {
+    
     const fetchTopProperties = async () => {
       const response = await fetch(
         `${process.env.REACT_APP_PROXY}/api/top-properties`,
@@ -62,8 +63,8 @@ const Home = () => {
           </div>
           {topProperties && (
             <Paging
-              currentPage={currentPage}
-              onPageChange={handlePageChange}
+            currentPage = {currentPage}
+            onPageChange= {onPageChange}
               totalPage={Math.ceil(topProperties.length / itemsPerPage)}
             />
           )}
