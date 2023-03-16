@@ -2,9 +2,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import PropertyDetailsPage from "./pages/PropertyDetailsPage";
 import SideMenu from "./components/SideMenu";
-
+import {Provider} from 'react-redux';
+import { pgStore } from "./redux/paginationRedux";
 function App() {
   return (
+    <Provider store = {pgStore}>
     <div className="App">
       <BrowserRouter>
         <SideMenu />
@@ -19,6 +21,7 @@ function App() {
         </div>
       </BrowserRouter>
     </div>
+    </Provider>
   );
 }
 
