@@ -1,3 +1,5 @@
+import { FaHome } from "react-icons/fa";
+
 const CarouselDetails = () => {
   return (
     <div>
@@ -25,7 +27,7 @@ const CarouselDetails = () => {
                     href="#contactAgent"
                     className="btn btn-white btn-outline-white py-3 px-3 rounded-0 btn-2"
                   >
-                    Louer cette Maison
+                    <FaHome className="mr-2" /> Louer cette Maison
                   </a>
                 </p>
               </div>
