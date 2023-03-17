@@ -1,6 +1,7 @@
-
+// import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+
 const Paging = ({ currentPage, onPageChange, totalPage }) => {
   const generatePageLinks = () => {
     const links = [];
@@ -22,10 +23,10 @@ const Paging = ({ currentPage, onPageChange, totalPage }) => {
         );
       }
     } else {
-      const start = Math.max(1, currentPage -1);
+      const start = Math.max(1, currentPage - 1);
       const end = Math.min(totalPage, currentPage + 1);
   
-      if (currentPage > 3) {
+      if (currentPage > 2) {
         links.push(
           <a
             key="leftEllipsis"
