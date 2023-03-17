@@ -5,20 +5,17 @@ import SearchForm from "../components/SearchForm";
 import PropertyFilter from "../components/PropertyFilter";
 import HomeSlider from "../components/HomeSlider";
 import Footer from "../components/Footer";
-
+import {setTotalPage} from  '../redux/paginationRedux';
+import {useDispatch, useSelector} from 'react-redux';
 const Home = () => {
+  const dispatch = useDispatch();
+  const pgData = useSelector((state) => state.pagination);
+  const currentPage = pgData[0].currentPage;
   const [topProperties, setTopProperties] = useState(null);
-  
-  const [currentPage, setCurrentPage] = useState(1);
-
   const itemsPerPage = 2;
- const onPageChange = (page) =>{
-  setCurrentPage(page);
- }
-
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-
+ 
   useEffect(() => {
     
     const fetchTopProperties = async () => {
@@ -34,12 +31,17 @@ const Home = () => {
       const json = await response.json();
       if (response.ok) {
         setTopProperties(json);
+        
       }
     };
     fetchTopProperties();
+    
   }, []);
-
+if(topProperties){
+  dispatch(setTotalPage(topProperties.length));
+}
   return (
+    
     <div className="home">
       <HomeSlider />
       <div className="site-section site-section-sm pb-0" id="prodisplay">
@@ -63,10 +65,7 @@ const Home = () => {
           </div>
           {topProperties && (
             <Paging
-            currentPage = {currentPage}
-            onPageChange= {onPageChange}
-              totalPage={Math.ceil(topProperties.length / itemsPerPage)}
-            />
+         />
           )}
         </div>
       </div>

@@ -1,8 +1,13 @@
 // import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
-
-const Paging = ({ currentPage, onPageChange, totalPage }) => {
+import {useDispatch, useSelector} from 'react-redux';
+import { updateCurrentPage } from '../redux/paginationRedux';
+const Paging = () => {
+  const dispatch = useDispatch();
+  const state = useSelector((state)=>state.pagination);
+  const totalPage = state[0].totalPage;
+  const currentPage = state[0].currentPage;
   const generatePageLinks = () => {
     const links = [];
   
@@ -14,7 +19,7 @@ const Paging = ({ currentPage, onPageChange, totalPage }) => {
             href="/#prodisplay"
             className={i === currentPage ? 'active' : ''}
             onClick={() => {
-              onPageChange(i);
+              dispatch(updateCurrentPage(i));
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
           >
@@ -32,7 +37,7 @@ const Paging = ({ currentPage, onPageChange, totalPage }) => {
             key="leftEllipsis"
             href="/#prodisplay"
             onClick={() => {
-              onPageChange(currentPage - 2);
+              dispatch(updateCurrentPage(currentPage - 2));
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
           >
@@ -48,7 +53,7 @@ const Paging = ({ currentPage, onPageChange, totalPage }) => {
             href="/#prodisplay"
             className={i === currentPage ? 'active' : ''}
             onClick={() => {
-              onPageChange(i);
+              dispatch(updateCurrentPage(i));
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
           >
@@ -63,7 +68,7 @@ const Paging = ({ currentPage, onPageChange, totalPage }) => {
             key="rightEllipsis"
             href="/#prodisplay"
             onClick={() => {
-              onPageChange(currentPage + 2);
+              dispatch(updateCurrentPage(currentPage + 2));
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
           >
@@ -86,7 +91,7 @@ const Paging = ({ currentPage, onPageChange, totalPage }) => {
               href="/#prodisplay"
               className="prev"
               onClick={() => {
-                onPageChange(currentPage - 1);
+                dispatch(updateCurrentPage(currentPage - 1));
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
             >
@@ -99,7 +104,7 @@ const Paging = ({ currentPage, onPageChange, totalPage }) => {
               href="/#prodisplay"
               className="next"
               onClick={() => {
-                onPageChange(currentPage + 1);
+                dispatch(updateCurrentPage(currentPage +1));
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
             >
