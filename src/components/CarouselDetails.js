@@ -1,4 +1,4 @@
-import { FaHome } from "react-icons/fa";
+import { BsFillHouseAddFill } from "react-icons/bs";
 import { ImLocation } from "react-icons/im";
 
 const CarouselDetails = ({ property }) => {
@@ -30,9 +30,9 @@ const CarouselDetails = ({ property }) => {
                 <p>
                   <a
                     href="#contactAgent"
-                    className="btn btn-white btn-outline-white py-3 px-3 rounded-0 btn-2"
+                    className="btn btn-white btn-outline-white py-2 px-3 rounded-0 btn-2"
                   >
-                    <FaHome className="mr-2" /> Louer cette Maison
+                    <BsFillHouseAddFill className="mr-2 h3" /> Louer cette Maison
                   </a>
                 </p>
               </div>

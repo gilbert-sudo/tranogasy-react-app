@@ -349,7 +349,7 @@ a:hover {
 }
 
 .site-loader {
-  position: fixed;
+  position: absolute;
   left: 0px;
   top: 0px;
   width: 100%;

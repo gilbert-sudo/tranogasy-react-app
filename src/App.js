@@ -1,26 +1,27 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
+import PageLoader from "./pages/PageLoader";
 import PropertyDetailsPage from "./pages/PropertyDetailsPage";
 import SideMenu from "./components/SideMenu";
-import {Provider} from 'react-redux';
-import { pgStore } from "./redux/paginationRedux";
+import { Provider } from "react-redux";
+import { store } from "./redux/redux";
+
 function App() {
+
   return (
-    <Provider store = {pgStore}>
-    <div className="App">
-      <BrowserRouter>
-        <SideMenu />
-        <div className="pages">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route
-              path="/property/:id"
-              element={<PropertyDetailsPage />}
-            />
-          </Routes>
-        </div>
-      </BrowserRouter>
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <BrowserRouter>
+          <SideMenu />
+          <div className="pages">
+            <Routes>
+              <Route path="/home" element={<Home />} />
+              <Route path="/property/:id" element={<PropertyDetailsPage />} />
+              <Route path="/" element={<PageLoader />} />
+            </Routes>
+          </div>
+        </BrowserRouter>
+      </div>
     </Provider>
   );
 }

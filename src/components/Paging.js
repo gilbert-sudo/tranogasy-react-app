@@ -1,8 +1,9 @@
 // import React, { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import {useDispatch, useSelector} from 'react-redux';
-import { updateCurrentPage } from '../redux/paginationRedux';
+import { updateCurrentPage } from '../redux/redux';
 const Paging = () => {
   const dispatch = useDispatch();
   const state = useSelector((state)=>state.pagination);
@@ -14,9 +15,9 @@ const Paging = () => {
     if (totalPage <= 3) {
       for (let i = 1; i <= totalPage; i++) {
         links.push(
-          <a
+          <Link
             key={i}
-            href="/#prodisplay"
+            to="/home/#prodisplay"
             className={i === currentPage ? 'active' : ''}
             onClick={() => {
               dispatch(updateCurrentPage(i));
@@ -24,7 +25,7 @@ const Paging = () => {
             }}
           >
             {i}
-          </a>
+          </Link>
         );
       }
     } else {
@@ -33,24 +34,24 @@ const Paging = () => {
   
       if (currentPage > 2) {
         links.push(
-          <a
+          <Link
             key="leftEllipsis"
-            href="/#prodisplay"
+            to="/home/#prodisplay"
             onClick={() => {
               dispatch(updateCurrentPage(currentPage - 2));
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
           >
             ...
-          </a>
+          </Link>
         );
       }
   
       for (let i = start; i <= end; i++) {
         links.push(
-          <a
+          <Link
             key={i}
-            href="/#prodisplay"
+            to="/home/#prodisplay"
             className={i === currentPage ? 'active' : ''}
             onClick={() => {
               dispatch(updateCurrentPage(i));
@@ -58,22 +59,22 @@ const Paging = () => {
             }}
           >
             {i}
-          </a>
+          </Link>
         );
       }
   
       if (currentPage < totalPage - 1) {
         links.push(
-          <a
+          <Link
             key="rightEllipsis"
-            href="/#prodisplay"
+            to="/home/#prodisplay"
             onClick={() => {
               dispatch(updateCurrentPage(currentPage + 2));
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
           >
             ...
-          </a>
+          </Link>
         );
       }
     }
@@ -87,8 +88,8 @@ const Paging = () => {
       <div className="col-md-12 text-center">
         <div className="site-pagination">
           {currentPage > 1 && (
-            <a
-              href="/#prodisplay"
+            <Link
+              to="/home/#prodisplay"
               className="prev"
               onClick={() => {
                 dispatch(updateCurrentPage(currentPage - 1));
@@ -96,12 +97,12 @@ const Paging = () => {
               }}
             >
               <FontAwesomeIcon icon={faChevronLeft} />
-            </a>
+            </Link>
           )}
           {generatePageLinks()}
           {currentPage < totalPage && (
-            <a
-              href="/#prodisplay"
+            <Link
+              to="/home/#prodisplay"
               className="next"
               onClick={() => {
                 dispatch(updateCurrentPage(currentPage +1));
@@ -109,7 +110,7 @@ const Paging = () => {
               }}
             >
               <FontAwesomeIcon icon={faChevronRight} />
-            </a>
+            </Link>
           )}
         </div>
       </div>
