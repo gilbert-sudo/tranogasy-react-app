@@ -1,68 +1,58 @@
-import { Link } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
+import "../assets/css/styles.css";
+import { BiHome, BiUser, BiBookAlt, BiBriefcaseAlt, BiMessageSquareDetail } from "react-icons/bi";
 
 const Navbar = () => {
+
+  const location = useLocation();
+
   return (
-    <div className="col-4 col-md-4 col-lg-8">
-      <nav
-        className="site-navigation text-right text-md-right"
-        role="navigation"
-      >
-        <div className="d-inline-block d-lg-none ml-md-0 mr-auto py-3">
-          <a href="#" className="site-menu-toggle js-menu-toggle text-white">
-            <span className="icon-menu h3" />
+    <>
+      {/*=============== HEADER ===============*/}
+      <div className="header" id="header">
+        <div className="navigation container">
+          <a href="#" className="nav__logo">
+            TranoGasy
           </a>
-        </div>
-        <ul className="site-menu js-clone-nav d-none d-lg-block">
-          <li className="active">
-            <Link to="/">Acceuil</Link>
-          </li>
-          <li>
-            <Link to="/PropertyDetailsPage">Acheter</Link>
-          </li>
-          <li>
-            <a href="rent.html">Louer</a>
-          </li>
-          <li className="has-children">
-            <a href="properties.html">Annonces</a>
-            <ul className="dropdown arrow-top">
-              <li>
-                <a href="#">Colocation</a>
+          <div className="nav__menu" id="nav-menu">
+            <ul className="nav__list">
+              <li className="nav__item mt-3">
+                <NavLink to="/home"  className={location.pathname === '/home' ? 'nav__link active-link' : 'nav__link'}>
+                  <BiHome className="nav__icon" />
+                  <span className="nav__name">Home</span>
+                </NavLink>
               </li>
-              <li>
-                <a href="#">Terrain </a>
+              <li className="nav__item mt-3">
+                <NavLink to="/" className={location.pathname === '/' ? 'nav__link active-link' : 'nav__link'}>
+                  <BiUser className="nav__icon" />
+                  <span className="nav__name">About</span>
+                </NavLink>
               </li>
-              <li>
-                <a href="#">Bâtiment commercial</a>
+              <li className="nav__item mt-3">
+                <a href="#skills" className="nav__link">
+                  <BiBookAlt className="nav__icon" />
+                  <span className="nav__name">Skills</span>
+                </a>
               </li>
-              <li className="has-children">
-                <a href="#">Sous-menu</a>
-                <ul className="dropdown">
-                  <li>
-                    <a href="#">Menu One</a>
-                  </li>
-                  <li>
-                    <a href="#">Menu Two</a>
-                  </li>
-                  <li>
-                    <a href="#">Menu Three</a>
-                  </li>
-                </ul>
+              <li className="nav__item mt-3">
+                <a href="#portfolio" className="nav__link">
+                  <BiBriefcaseAlt className="nav__icon" />
+                  <span className="nav__name">Portfolio</span>
+                </a>
+              </li>
+              <li className="nav__item mt-3">
+                <a href="#contactme" className="nav__link">
+                  <BiMessageSquareDetail className="nav__icon" />
+                  <span className="nav__name">Contactme</span>
+                </a>
               </li>
             </ul>
-          </li>
-          <li>
-            <a href="about.html">À propos de nous</a>
-          </li>
-          <li>
-            <a href="contact.html">Contact</a>
-          </li>
-          <li>
-            <a href="ip.html">Fiteny </a>
-          </li>
-        </ul>
-      </nav>
-    </div>
+          </div>
+          <img src="images/logo.png" alt="" className="nav__img" />
+        </div>
+      </div>
+    </>
   );
 };
 

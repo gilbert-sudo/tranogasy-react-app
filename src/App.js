@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import PageLoader from "./pages/PageLoader";
 import PropertyDetailsPage from "./pages/PropertyDetailsPage";
-import SideMenu from "./components/SideMenu";
+import Navbar from "./components/Navbar";
 import { Provider } from "react-redux";
 import { store } from "./redux/redux";
 
@@ -12,7 +12,7 @@ function App() {
     <Provider store={store}>
       <div className="App">
         <BrowserRouter>
-          <SideMenu />
+          <Navbar />
           <div className="pages">
             <Routes>
               <Route path="/home" element={<Home />} />

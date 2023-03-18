@@ -3,7 +3,6 @@ import Paging from "../components/Paging";
 import SearchForm from "../components/SearchForm";
 import PropertyFilter from "../components/PropertyFilter";
 import HomeSlider from "../components/HomeSlider";
-import Footer from "../components/Footer";
 import { setTotalPage } from "../redux/redux";
 import { useDispatch, useSelector } from "react-redux";
 const Home = () => {
@@ -25,8 +24,8 @@ const Home = () => {
         </div>
       </div>
       <div className="site-section site-section-sm bg-light">
-        <div className="container">
-          <div className="row mb-5">
+        <div className="container" style={{paddingBottom:"80px"}}>
+          <div className="row">
             {topProperties &&
               topProperties
                 .slice(paginationIndex[1].startIndex, paginationIndex[1].endIndex)
@@ -40,7 +39,6 @@ const Home = () => {
           {topProperties && <Paging />}
         </div>
       </div>
-      <Footer />
     </div>
   );
 };
