@@ -12,7 +12,7 @@ const PageLoader = () => {
 
   
   if (topProperties !== null) {
-    navigate("/home");
+    navigate("/");
   }
 
   useEffect(() => {

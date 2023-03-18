@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route ,Navigate} from "react-router-dom";
 import Home from "./pages/Home";
 import PageLoader from "./pages/PageLoader";
 import PropertyDetailsPage from "./pages/PropertyDetailsPage";
@@ -14,9 +14,9 @@ function App() {
         {topProperties && <Navbar />}
         <div className="pages">
           <Routes>
-            <Route path="/home" element={<Home />} />
+            <Route path="/" element={topProperties ? <Home /> : <Navigate to="/loader"/>} />
             <Route path="/property/:id" element={<PropertyDetailsPage />} />
-            <Route path="/" element={<PageLoader />} />
+            <Route path="/loader" element={<PageLoader />} />
           </Routes>
         </div>
       </BrowserRouter>

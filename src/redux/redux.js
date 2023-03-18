@@ -5,7 +5,7 @@ const paginationSlice = createSlice({
   name: "pagination",
   initialState: [
     { currentPage: 1, totalPage: 0 },
-    { itemsPerPage: 5, startIndex: 0, endIndex: 0 },
+    { itemsPerPage: 2, startIndex: 0, endIndex: 0 },
   ],
   reducers: {
     updateCurrentPage: (state, action) => {

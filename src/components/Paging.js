@@ -17,7 +17,7 @@ const Paging = () => {
         links.push(
           <Link
             key={i}
-            to="/home/#prodisplay"
+            to="/#prodisplay"
             className={i === currentPage ? 'active' : ''}
             onClick={() => {
               dispatch(updateCurrentPage(i));
@@ -36,7 +36,7 @@ const Paging = () => {
         links.push(
           <Link
             key="leftEllipsis"
-            to="/home/#prodisplay"
+            to="/#prodisplay"
             onClick={() => {
               dispatch(updateCurrentPage(currentPage - 2));
               window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -51,7 +51,7 @@ const Paging = () => {
         links.push(
           <Link
             key={i}
-            to="/home/#prodisplay"
+            to="/#prodisplay"
             className={i === currentPage ? 'active' : ''}
             onClick={() => {
               dispatch(updateCurrentPage(i));
@@ -67,7 +67,7 @@ const Paging = () => {
         links.push(
           <Link
             key="rightEllipsis"
-            to="/home/#prodisplay"
+            to="/#prodisplay"
             onClick={() => {
               dispatch(updateCurrentPage(currentPage + 2));
               window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -89,7 +89,7 @@ const Paging = () => {
         <div className="site-pagination">
           {currentPage > 1 && (
             <Link
-              to="/home/#prodisplay"
+              to="/#prodisplay"
               className="prev"
               onClick={() => {
                 dispatch(updateCurrentPage(currentPage - 1));
@@ -102,7 +102,7 @@ const Paging = () => {
           {generatePageLinks()}
           {currentPage < totalPage && (
             <Link
-              to="/home/#prodisplay"
+              to="/#prodisplay"
               className="next"
               onClick={() => {
                 dispatch(updateCurrentPage(currentPage +1));

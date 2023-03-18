@@ -18,13 +18,13 @@ const Navbar = () => {
           <div className="nav__menu" id="nav-menu">
             <ul className="nav__list">
               <li className="nav__item mt-3">
-                <NavLink to="/home"  className={location.pathname === '/home' ? 'nav__link active-link' : 'nav__link'}>
+                <NavLink to="/"  className={location.pathname === '/' ? 'nav__link active-link' : 'nav__link'}>
                   <BiHome className="nav__icon" />
                   <span className="nav__name">Home</span>
                 </NavLink>
               </li>
               <li className="nav__item mt-3">
-                <NavLink to="/" className={location.pathname === '/' ? 'nav__link active-link' : 'nav__link'}>
+                <NavLink to="/loader" className={location.pathname === '/loader' ? 'nav__link active-link' : 'nav__link'}>
                   <BiUser className="nav__icon" />
                   <span className="nav__name">About</span>
                 </NavLink>
