@@ -52,7 +52,7 @@ const PropertyDetails = () => {
             </div>
             <div className="col-lg-4 pt-5" id="contactAgent">
               {/* agent contact form */}
-              <ContactAgentForm />
+              <ContactAgentForm propertyId = {id}/>
               {/* agent contact form */}
             </div>
           </div>
