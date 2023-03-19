@@ -371,7 +371,6 @@ a:hover {
 }
 .site-blocks-cover.overlay:before {
   position: absolute;
-  content: "";
   left: 0;
   bottom: 0;
   right: 0;
