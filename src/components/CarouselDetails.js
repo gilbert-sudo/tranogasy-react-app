@@ -1,12 +1,12 @@
 import { BsFillHouseAddFill } from "react-icons/bs";
 import { ImLocation } from "react-icons/im";
 
-const CarouselDetails = ({ property }) => {
+const CarouselDetails = ({ property, images, city }) => {
   return (
     <div>
       <div
         className="site-blocks-cover inner-page-cover overlay"
-        style={{ backgroundImage: `url(${property.images[0].url})` }}
+        style={{ backgroundImage: `url(${images[0].url})` }}
         data-aos="fade"
         data-stellar-background-ratio="0.5"
       >
@@ -19,7 +19,7 @@ const CarouselDetails = ({ property }) => {
               <h1 className="mb-2 h6">
                 {" "}
                 <ImLocation className="mr-2" />
-                625 S. {property.city.quarter} St {property.city.cityname}
+                625 S. {property.city.quarter} St {city.cityname}
               </h1>
               <p className="mb-5 h4">
                 <strong className="h2 text-success font-weight-bold">

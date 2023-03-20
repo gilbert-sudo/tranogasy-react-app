@@ -15,11 +15,10 @@ const paginationSlice = createSlice({
       state[0].totalPage = Math.ceil(action.payload / state[1].itemsPerPage);
       state[1].startIndex = (state[0].currentPage - 1) * state[1].itemsPerPage;
       state[1].endIndex = state[1].startIndex + state[1].itemsPerPage;
-    }
+    },
   },
 });
-export const { updateCurrentPage, setTotalPage } =
-  paginationSlice.actions;
+export const { updateCurrentPage, setTotalPage } = paginationSlice.actions;
 
 //Top50Properties
 const topPropertiesSlice = createSlice({
@@ -34,9 +33,23 @@ const topPropertiesSlice = createSlice({
 
 export const { setTopProperties } = topPropertiesSlice.actions;
 
+//properties
+const propertiesSlice = createSlice({
+  name: "properties",
+  initialState: null,
+  reducers: {
+    setProperties: (state, action) => {
+      return action.payload;
+    },
+  },
+});
+
+export const { setProperties } = propertiesSlice.actions;
+
 export const store = configureStore({
   reducer: {
     pagination: paginationSlice.reducer,
     topProperties: topPropertiesSlice.reducer,
+    properties: propertiesSlice.reducer,
   },
 });

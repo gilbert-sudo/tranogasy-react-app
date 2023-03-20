@@ -1,40 +1,33 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Footer from "../components/Footer";
+import { useSelector } from "react-redux";
 import CarouselDetails from "../components/CarouselDetails";
 import MiniCarousel from "../components/MiniCarousel";
 import CardDetails from "../components/CardDetails";
 import PropertyGallery from "../components/PropertyGallery";
 import ContactAgentForm from "../components/ContactAgentForm";
+//redux data
 
 const PropertyDetails = () => {
-  const { id } = useParams();
-  const [propertiesDetails, setPropertiesDetails] = useState(null);
+  // scroll to top of the page
+  window.scrollTo(0, 0);
 
-  useEffect(() => {
-    const fetchPropertyDetails = async () => {
-      const response = await fetch(
-        `${process.env.REACT_APP_PROXY}/api/properties/${id}`,
-        {
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Content-Type": "aplication/json",
-          },
-        }
-      );
-      const json = await response.json();
-      if (response.ok) {
-        setPropertiesDetails(json);
-      }
-    };
-    fetchPropertyDetails();
-    // scroll to top of the page
-    window.scrollTo(0, 0);
-  }, [id]);
+  const { id } = useParams();
+
+  const topProperties = useSelector((state) => state.topProperties);
+  const propertiesDetails = topProperties.filter(
+    (topProperty) => topProperty.property._id === id
+  );
+  console.log(propertiesDetails);
 
   return (
     <div>
-      {propertiesDetails && <CarouselDetails property={propertiesDetails} />}
+      {propertiesDetails && (
+        <CarouselDetails
+          city={propertiesDetails[0].city}
+          images={propertiesDetails[0].images}
+          property={propertiesDetails[0].property}
+        />
+      )}
       <div className="site-section site-section-sm">
         <div className="container">
           <div className="row">
@@ -46,20 +39,24 @@ const PropertyDetails = () => {
                 <h3 className="h4 text-black widget-title mb-3">
                   Déscription:
                 </h3>
-                <p>{propertiesDetails && propertiesDetails.description}</p>
+                <p>
+                  {propertiesDetails &&
+                    propertiesDetails[0].property.description}
+                </p>
               </div>
               <PropertyGallery />
             </div>
             <div className="col-lg-4 pt-5" id="contactAgent">
               {/* agent contact form */}
-              <ContactAgentForm propertyId = {id}/>
+              <ContactAgentForm
+                propertyId={propertiesDetails[0].property._id}
+              />
               {/* agent contact form */}
             </div>
           </div>
         </div>
       </div>
-
-      <Footer />
+      <hr />
     </div>
   );
 };

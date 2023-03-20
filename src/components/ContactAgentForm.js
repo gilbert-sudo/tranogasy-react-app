@@ -121,7 +121,7 @@ const phoneNumber = phone;
     </div>
     <div className="form-group">
       <label htmlFor="email">
-        Email <div style={{ color: "red" }}>(n'est pas obligatoire)</div>
+        Email <nb style={{ color: "red" }}>(pas obligatoire)</nb>
       </label>
       <div className="input-group">
         <div className="input-group-prepend">
@@ -133,8 +133,8 @@ const phoneNumber = phone;
       </div>
     </div>
     <div className="form-group">
-      <label htmlFor="message">Message <div style={{ color: "red" }}>(n'est pas obligatoire)</div></label>
-      <textarea   value = {msgByUser} onChange = {(e) =>setMsgByUser(e.target.value)} id="message" className="form-control"></textarea>
+      <label htmlFor="message">Message <nb style={{ color: "red" }}>(pas obligatoire)</nb></label>
+      <textarea  style={{ minHeight: '100px' }}  value = {msgByUser} onChange = {(e) =>setMsgByUser(e.target.value)} id="message" className="form-control"></textarea>
     </div>
     <div className="form-group">
       <input onClick={postMessage}

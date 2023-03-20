@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, Link, useLocation } from "react-router-dom";
 
 import "../assets/css/styles.css";
 import { BiHome, BiUser, BiBookAlt, BiBriefcaseAlt, BiMessageSquareDetail } from "react-icons/bi";
@@ -12,9 +12,9 @@ const Navbar = () => {
       {/*=============== HEADER ===============*/}
       <div className="header" id="header">
         <div className="navigation container">
-          <a href="#" className="nav__logo">
+          <Link to="/" className="nav__logo">
             TranoGasy
-          </a>
+          </Link>
           <div className="nav__menu" id="nav-menu">
             <ul className="nav__list">
               <li className="nav__item mt-3">
