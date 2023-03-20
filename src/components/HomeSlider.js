@@ -11,7 +11,7 @@ const options = {
 const HomeSlider = () => {
   return (
     <OwlCarousel className="slide-one-item home-slider owl-theme" {...options}>
-      <div className="site-blocks-cover overlay" style={{backgroundImage: "url(https://ik.imagekit.io/ryxb55mhk/Tranogasy/rova-tranogasy.jpg?updatedAt=1679198865436)"}} data-aos="fade" data-stellar-background-ratio="0.5">
+      <div className="site-blocks-cover overlay" style={{backgroundImage: "url(https://ik.imagekit.io/ryxb55mhk/Tranogasy/rova-tranogasy_2.png?updatedAt=1679331634605)"}} data-aos="fade" data-stellar-background-ratio="0.5">
         <div className="container">
           <div className="row align-items-center justify-content-center text-center">
             <div className="col-md-6" style={{marginTop: "50px"}}>
@@ -21,7 +21,7 @@ const HomeSlider = () => {
         </div>
       </div>  
 
-      <div className="site-blocks-cover overlay" style={{backgroundImage: "url(https://ik.imagekit.io/ryxb55mhk/Tranogasy/smiley-embrasse-couple-conversant-agent-immobilier-feminin.jpg?updatedAt=1679205236198)"}} data-aos="fade" data-stellar-background-ratio="0.5">
+      <div className="site-blocks-cover overlay" style={{backgroundImage: "url(https://ik.imagekit.io/ryxb55mhk/Tranogasy/rova-tranogasy.png?updatedAt=1679328193424)"}} data-aos="fade" data-stellar-background-ratio="0.5">
         <div className="container">
           <div className="row align-items-center justify-content-center text-center">
             <div className="col-md-10" style={{marginTop: "50px"}}>
