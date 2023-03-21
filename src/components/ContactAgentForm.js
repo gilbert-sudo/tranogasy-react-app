@@ -29,7 +29,7 @@ const ContactAgentForm = ({propertyId}) => {
     const message = document.getElementById('message').value;
     if (!name.trim() || !phone.trim()) {
       let msg = "Le nom et numéro de téléphone sont obligatoires.";
-      let bootstrapClass = "alert alert-danger";
+      let bootstrapClass = "alert alert-warning";
       setBootstrap(bootstrapClass)
       setMsgError(msg)
       return;
