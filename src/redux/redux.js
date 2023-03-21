@@ -18,7 +18,7 @@ const paginationSlice = createSlice({
     },
   },
 });
-export const { updateCurrentPage, setTotalPage } = paginationSlice.actions;
+export const { updateCurrentPage, setTotalPage, setResetAgentInput } = paginationSlice.actions;
 
 //Top50Properties
 const topPropertiesSlice = createSlice({

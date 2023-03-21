@@ -17,7 +17,6 @@ const PropertyDetails = () => {
   const propertiesDetails = topProperties.filter(
     (topProperty) => topProperty.property._id === id
   );
-  console.log(propertiesDetails);
 
   return (
     <div>
