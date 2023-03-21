@@ -1,11 +1,19 @@
-import { NavLink, Link, useLocation } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { updateActiveLink } from "../redux/redux";
 
-import "../assets/css/styles.css";
-import { BiHome, BiUser, BiBookAlt, BiBriefcaseAlt, BiMessageSquareDetail } from "react-icons/bi";
+import {
+  BiHome,
+  BiUser,
+  BiBookAlt,
+  BiBriefcaseAlt,
+  BiMessageSquareDetail,
+} from "react-icons/bi";
 
 const Navbar = () => {
-
-  const location = useLocation();
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state.pagination);
+  const activePage = state[2].activeLink;
 
   return (
     <>
@@ -18,15 +26,38 @@ const Navbar = () => {
           <div className="nav__menu" id="nav-menu">
             <ul className="nav__list">
               <li className="nav__item mt-3">
-                <NavLink to="/"  className={location.pathname === '/' ? 'nav__link active-link' : 'nav__link'}>
+                <NavLink
+                  to="/"
+                  style={
+                    activePage === "/"
+                      ? { color: "#26A699" }
+                      : { color: "#222B2A" }
+                  }
+                  className="nav__link"
+                  onClick={() => {
+                    dispatch(updateActiveLink("/"));
+                  }}
+                >
                   <BiHome className="nav__icon" />
                   <span className="nav__name">Home</span>
                 </NavLink>
               </li>
               <li className="nav__item mt-3">
-                <NavLink to="/loader" className={location.pathname === '/loader' ? 'nav__link active-link' : 'nav__link'}>
+                {" "}
+                <NavLink
+                  to="/user"
+                  style={
+                    activePage === "/user"
+                      ? { color: "#26A699" }
+                      : { color: "#222B2A" }
+                  }
+                  className="nav__link"
+                  onClick={() => {
+                    dispatch(updateActiveLink("/user"));
+                  }}
+                >
                   <BiUser className="nav__icon" />
-                  <span className="nav__name">About</span>
+                  <span className="nav__name">Connexion</span>
                 </NavLink>
               </li>
               <li className="nav__item mt-3">

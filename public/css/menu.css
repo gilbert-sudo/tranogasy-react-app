@@ -26,12 +26,7 @@
   --z-fixed: 100;
 }
 
-@media screen and (min-width: 968px) {
-  :root {
-    --h1-font-size: 2.25rem;
-    --normal-font-size: 1rem;
-  }
-}
+
 
 /*=============== BASE ===============*/
 * {
@@ -110,7 +105,6 @@ img {
   font-weight: 600;
 }
 
-@media screen and (max-width: 767px) {
   .nav__menu {
     position: fixed;
     bottom: 0;
@@ -125,7 +119,6 @@ img {
     border-radius: 1.25rem 1.25rem 0 0;
     transition: .4s;
   }
-}
 
 .nav__list, 
 .nav__link {
@@ -176,68 +169,5 @@ img {
   box-shadow: 0 1px 12px hsla(var(--hue), var(--sat), 15%, 0.15);
 }
 
-/*=============== MEDIA QUERIES ===============*/
-/* For small devices */
-/* Remove if you choose, the minimalist design */
-@media screen and (max-width: 320px) {
-  .nav__name {
-    display: none;
-  }
-}
 
-/* For medium devices */
-@media screen and (min-width: 576px) {
-  .nav__list {
-    justify-content: center;
-    column-gap: 3rem;
-  }
-}
 
-@media screen and (min-width: 767px) {
-  .body-section {
-    margin: 0;
-  }
-  .section {
-    padding: 7rem 0 2rem;
-  }
-  .nav {
-    height: calc(var(--header-height) + 1.5rem); /* 4.5rem */
-  }
-  .nav__img {
-    display: none;
-  }
-  .nav__icon {
-    display: none;
-  }
-  .nav__name {
-    font-size: var(--normal-font-size);
-    /* display: block; */ /* Minimalist design, visible labels */
-  }
-  .nav__link:hover {
-    color: var(--first-color);
-  }
-
-  /* First design, remove if you choose the minimalist design */
-  .active-link::before {
-    content: '';
-    position: absolute;
-    bottom: -.75rem;
-    width: 4px;
-    height: 4px;
-    background-color: var(--first-color);
-    border-radius: 50%;
-  }
-
-  /* Minimalist design */
-  /* .active-link::before{
-      bottom: -.75rem;
-  } */
-}
-
-/* For large devices */
-@media screen and (min-width: 1024px) {
-  .container {
-    margin-left: auto;
-    margin-right: auto;
-  }
-}

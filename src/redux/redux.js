@@ -6,10 +6,14 @@ const paginationSlice = createSlice({
   initialState: [
     { currentPage: 1, totalPage: 0 },
     { itemsPerPage: 2, startIndex: 0, endIndex: 0 },
+    { activeLink: "/"}
   ],
   reducers: {
     updateCurrentPage: (state, action) => {
       state[0].currentPage = action.payload;
+    },
+    updateActiveLink: (state, action) => {
+      state[2].activeLink = action.payload;
     },
     setTotalPage: (state, action) => {
       state[0].totalPage = Math.ceil(action.payload / state[1].itemsPerPage);
@@ -18,7 +22,7 @@ const paginationSlice = createSlice({
     },
   },
 });
-export const { updateCurrentPage, setTotalPage, setResetAgentInput } = paginationSlice.actions;
+export const { updateCurrentPage, setTotalPage, setResetAgentInput, updateActiveLink } = paginationSlice.actions;
 
 //Top50Properties
 const topPropertiesSlice = createSlice({
