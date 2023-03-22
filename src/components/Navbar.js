@@ -21,7 +21,7 @@ const Navbar = () => {
       <div className="header" id="header">
         <div className="navigation container">
           <Link to="/" className="nav__logo">
-            TranoGasy
+            <trano style={{color:"#0ed145"}}>Trano</trano><gasy style={{color:"#ec1c24"}}>Gasy</gasy>.
           </Link>
           <div className="nav__menu" id="nav-menu">
             <ul className="nav__list">
@@ -30,7 +30,8 @@ const Navbar = () => {
                   to="/"
                   style={
                     activePage === "/"
-                      ? { color: "#26A699" }
+                      ? { color: "#7cbd1e" }
+                      // ? { color: "#26A699" }
                       : { color: "#222B2A" }
                   }
                   className="nav__link"
@@ -48,7 +49,7 @@ const Navbar = () => {
                   to="/user"
                   style={
                     activePage === "/user"
-                      ? { color: "#26A699" }
+                      ? { color: "#7cbd1e" }
                       : { color: "#222B2A" }
                   }
                   className="nav__link"

@@ -149,7 +149,8 @@ img {
 /*Active link*/
 .active-link {
   position: relative;
-  color: var(--first-color);
+  /* color: var(--first-color); */
+  color: #7cbd1e;
   transition: .3s;
 }
 

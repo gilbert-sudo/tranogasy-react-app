@@ -6,15 +6,15 @@ const CarouselDetails = ({ property, images, city }) => {
     <div>
       <div
         className="site-blocks-cover inner-page-cover overlay"
-        style={{ backgroundImage: `url(${images[0].url})` }}
+        style={{ backgroundImage: `url(${images[0].url})`}}
         data-aos="fade"
         data-stellar-background-ratio="0.5"
       >
-        <div className="container">
+        <div className="container"  style={{ backgroundColor: `rgb(0, 0, 0, 0.5)`}}>
           <div className="row align-items-center justify-content-center text-center">
             <div className="col-md-10">
               <span className="d-inline-block text-white px-3 mb-3 property-offer-type rounded h6">
-                Détails de la propriété <num className="h5">n°:{property.propertyNumber}</num>
+                Détails de la propriété <num className="h5 text-danger">n°:{property.propertyNumber}</num>
               </span>
               <h1 className="mb-2 h6">
                 {" "}

@@ -123,9 +123,9 @@ a:hover {
   background: #333333 !important;
 }
 .btn.btn-white.btn-outline-white {
-  border-color: #fff;
-  background: transparent;
-  color: #fff;
+  border-color: #7cbd1e;
+  background: rgb(124, 189, 30, 0.5);
+  color: #ffffff;
 }
 .btn.btn-white.btn-outline-white:hover {
   background: #fff;
@@ -642,7 +642,7 @@ a:hover {
   text-transform: uppercase;
   font-size: 13px;
   letter-spacing: 0.1em;
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.7);
 }
 .form-search .form-control {
   border: none;
@@ -748,7 +748,10 @@ a:hover {
 
 .slide-one-item.home-slider .owl-prev,
 .slide-one-item.home-slider .owl-next {
+  display: none;
   color: #fff;
+  background-color: #7cbd1e !important;
+  border-color: #7cbd1e  !important;
   position: absolute !important;
   top: 50%;
   padding: 0px;
