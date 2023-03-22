@@ -40,7 +40,7 @@ const Navbar = () => {
                   }}
                 >
                   <BiHome className="nav__icon" />
-                  <span className="nav__name">Home</span>
+                  <span className="nav__name">Acceuil</span>
                 </NavLink>
               </li>
               <li className="nav__item mt-3">
@@ -62,10 +62,22 @@ const Navbar = () => {
                 </NavLink>
               </li>
               <li className="nav__item mt-3">
-                <a href="#skills" className="nav__link">
+              {" "}
+                <NavLink
+                  to="/login"
+                  style={
+                    activePage === "/login"
+                      ? { color: "#7cbd1e" }
+                      : { color: "#222B2A" }
+                  }
+                  className="nav__link"
+                  onClick={() => {
+                    dispatch(updateActiveLink("/login"));
+                  }}
+                >
                   <BiBookAlt className="nav__icon" />
-                  <span className="nav__name">Skills</span>
-                </a>
+                  <span className="nav__name">Connexion</span>
+                </NavLink>
               </li>
               <li className="nav__item mt-3">
                 <a href="#portfolio" className="nav__link">
