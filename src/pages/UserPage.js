@@ -1,3 +1,6 @@
+import { BiLogOutCircle } from "react-icons/bi";
+import { FaUserEdit, FaLock, FaPhoneAlt, FaMailBulk } from "react-icons/fa";
+
 const UserPage = () => {
   // Render the main content
 
@@ -5,7 +8,7 @@ const UserPage = () => {
     <>
       <meta charSet="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <title>Snippet - BBBootstrap</title>
+      <title>TranoGasy - Gilbert Madagascar</title>
       <link
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         rel="stylesheet"
@@ -24,33 +27,48 @@ const UserPage = () => {
         <div className="card mt-5 px-4 pt-4 pb-2">
           <div className="media p-2">
             <img
-              src="https://ik.imagekit.io/ryxb55mhk/Tranogasy/user2.png?updatedAt=1679503801059"
+              alt=""
+              src="https://ik.imagekit.io/ryxb55mhk/Tranogasy/user3.png?updatedAt=1679563059043"
               className="mr-1 align-self-start"
             />
             <div className="media-body">
               <div className="d-flex flex-row justify-content-between">
                 <h6 className="mt-2 mb-0">Ranaivo Gilbert</h6>
-                <i className="fas fa-angle-down mr-3 text-muted" />
+                <i className="fas fa-angle-down mr-3 text-muted"> </i>
               </div>
               <p className="text-muted">0345189896</p>
             </div>
           </div>
           <ul className="list text-muted mt-3 pl-0">
             <li>
-              <i className="far fa-building mr-3 ml-2" />
-              Bussiness account
+              <i className="fas mr-3 ml-1">
+                <FaUserEdit className="mr-2" style={{fontSize: "20px"}}/>
+                Modifier votre nom d'utisateur
+              </i>
             </li>
             <li>
-              <i className="fas fa-wallet mr-3 ml-2" />
-              Finance management
+              <i className="fas mr-3 ml-1">
+                <FaLock className="mr-2" style={{fontSize: "20px"}}/>
+                Modifier votre mot de passe
+              </i>
             </li>
             <li>
-              <i className="far fa-credit-card mr-3 ml-2" />
-              Transactions
+              <i className="fas mr-3 ml-1">
+                <FaPhoneAlt className="mr-2" style={{fontSize: "20px"}}/>
+                Modifier votre contact
+              </i>
             </li>
             <li>
-              <i className="fas fa-chart-pie mr-3 ml-2" />
-              Spending analysis
+              <i className="fas mr-3 ml-1">
+                <FaMailBulk className="mr-2" style={{fontSize: "20px"}}/>
+                Modifier votre Adresse Email
+              </i>
+            </li>
+            <li>
+              <i className="fas mr-3 ml-1" style={{color: "#0ed145"}}>
+                <BiLogOutCircle className="mr-2" style={{fontSize: "20px"}}/>
+                Se déconnecter
+              </i>
             </li>
           </ul>
         </div>

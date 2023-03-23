@@ -30,7 +30,7 @@ const Navbar = () => {
                   to="/"
                   style={
                     activePage === "/"
-                      ? { color: "#7cbd1e" }
+                      ? { color: "#0ed145" }
                       // ? { color: "#26A699" }
                       : { color: "#222B2A" }
                   }
@@ -43,31 +43,14 @@ const Navbar = () => {
                   <span className="nav__name">Acceuil</span>
                 </NavLink>
               </li>
-              <li className="nav__item mt-3">
-                {" "}
-                <NavLink
-                  to="/user"
-                  style={
-                    activePage === "/user"
-                      ? { color: "#7cbd1e" }
-                      : { color: "#222B2A" }
-                  }
-                  className="nav__link"
-                  onClick={() => {
-                    dispatch(updateActiveLink("/user"));
-                  }}
-                >
-                  <BiUser className="nav__icon" />
-                  <span className="nav__name">Connexion</span>
-                </NavLink>
-              </li>
+           
               <li className="nav__item mt-3">
               {" "}
                 <NavLink
                   to="/login"
                   style={
                     activePage === "/login"
-                      ? { color: "#7cbd1e" }
+                      ? { color: "#0ed145" }
                       : { color: "#222B2A" }
                   }
                   className="nav__link"
@@ -90,6 +73,24 @@ const Navbar = () => {
                   <BiMessageSquareDetail className="nav__icon" />
                   <span className="nav__name">Contactme</span>
                 </a>
+              </li>
+              <li className="nav__item mt-3">
+                {" "}
+                <NavLink
+                  to="/user"
+                  style={
+                    activePage === "/user"
+                      ? { color: "#0ed145" }
+                      : { color: "#222B2A" }
+                  }
+                  className="nav__link"
+                  onClick={() => {
+                    dispatch(updateActiveLink("/user"));
+                  }}
+                >
+                  <BiUser className="nav__icon" />
+                  <span className="nav__name">Connexion</span>
+                </NavLink>
               </li>
             </ul>
           </div>
