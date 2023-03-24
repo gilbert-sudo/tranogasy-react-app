@@ -1,13 +1,21 @@
 import { useState } from "react";
 import { FaLock, FaEyeSlash, FaEye, FaPhoneAlt } from "react-icons/fa";
-const LoginPage = () => {
+import { useLogin } from "../hooks/useLogin";
+import { Link } from "react-router-dom";
 
+const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [password, setPassword] = useState("");
+
+  const { login, isLoading, error, bootstrapClassname } = useLogin();
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log('hello word');
-  }
+    e.preventDefault();
+    console.log(phoneNumber, password);
+    login(phoneNumber, password);
+  };
+
   // Render the main content
 
   return (
@@ -43,9 +51,11 @@ const LoginPage = () => {
                         <FaPhoneAlt />
                       </span>
                       <input
+                        value={phoneNumber}
                         type="text"
                         placeholder="Votre numéro de téléphone"
                         required=""
+                        onChange={(e) => setPhoneNumber(e.target.value)}
                       />
                     </div>
                   </div>
@@ -55,12 +65,19 @@ const LoginPage = () => {
                         <FaLock />
                       </span>
                       <input
+                        value={password}
                         type={showPassword ? "text" : "password"}
                         placeholder="Tapez votre mot de passe"
                         required=""
+                        onChange={(e) => setPassword(e.target.value)}
                       />
-                      <div className="btn bg-white text-muted" onClick={() => setShowPassword(!showPassword)}>
-                        <span className="far">{showPassword ? <FaEyeSlash /> : <FaEye />}</span>
+                      <div
+                        className="btn bg-white text-muted"
+                        onClick={() => setShowPassword(!showPassword)}
+                      >
+                        <span className="far">
+                          {showPassword ? <FaEyeSlash /> : <FaEye />}
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -69,14 +86,27 @@ const LoginPage = () => {
                     <label htmlFor="remember" className="text-muted">
                       Enregistrer des données
                     </label> */}
-                    <a to="#" id="forgot" className="font-weight-bold" style={{ color: "#7cbd1e"}}>
+                    <a
+                      to="#"
+                      id="forgot"
+                      className="font-weight-bold"
+                      style={{ color: "#7cbd1e" }}
+                    >
                       Mot de passe oublié?
                     </a>
                   </div>
-                  <button className="btn btn-primary btn-block mt-3">Se connecter</button>
+                  <button
+                    type="submit"
+                    disabled={isLoading}
+                    className="btn btn-primary btn-block mt-3"
+                  >
+                    Se connecter
+                  </button>
                   <div className="text-center pt-4 text-muted">
-                    Vous n'avez pas de compte ? <a href="#">S'inscrire</a>
+                    Vous n'avez pas de compte ? <Link to="/signup"><strong>S'inscrire</strong></Link>
                   </div>
+
+                  {error && <div className={bootstrapClassname}>{error}</div>}
                 </form>
               </div>
               <div className="mx-3 my-2 py-2 bordert">

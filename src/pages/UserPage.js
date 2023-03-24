@@ -1,7 +1,12 @@
 import { BiLogOutCircle } from "react-icons/bi";
 import { FaUserEdit, FaLock, FaPhoneAlt, FaMailBulk } from "react-icons/fa";
+import { useSelector } from "react-redux";
+import { useLogout } from "../hooks/useLogout"
 
 const UserPage = () => {
+  const { logout } = useLogout();
+  //redux
+  const user = useSelector((state) => state.user.client);
   // Render the main content
 
   return (
@@ -33,10 +38,10 @@ const UserPage = () => {
             />
             <div className="media-body">
               <div className="d-flex flex-row justify-content-between">
-                <h6 className="mt-2 mb-0">Ranaivo Gilbert</h6>
+                <h6 className="mt-2 mb-0">{user && user.username}</h6>
                 <i className="fas fa-angle-down mr-3 text-muted"> </i>
               </div>
-              <p className="text-muted">0345189896</p>
+              <p className="text-muted">{user && user.phone}</p>
             </div>
           </div>
           <ul className="list text-muted mt-3 pl-0">
@@ -64,7 +69,7 @@ const UserPage = () => {
                 Modifier votre Adresse Email
               </i>
             </li>
-            <li>
+            <li onClick={logout}>
               <i className="fas mr-3 ml-1" style={{color: "#7cbd1e"}}>
                 <BiLogOutCircle className="mr-2" style={{fontSize: "20px"}}/>
                 Se déconnecter

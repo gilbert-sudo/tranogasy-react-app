@@ -4,9 +4,27 @@ import {
   FaUser,
   FaPhoneAlt,
   FaMailBulk,
+  FaEye
 } from "react-icons/fa";
+import { useSignup } from "../hooks/useSignup";
+import { useState } from "react";
+
 const SignUpPage = () => {
+  const { signup, isLoading, error, bootstrapClassname } = useSignup();
+
+  const [username, setUsername] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
   // Render the main content
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    await signup(username, email, phone, password, confirmPassword);
+  };
 
   return (
     <>
@@ -34,13 +52,15 @@ const SignUpPage = () => {
                 <h3 className="pt-3 font-weight-bold">Inscription</h3>
               </div>
               <div className="panel-body p-3">
-                <form action="login_script.php" method="POST">
+                <form action="" onSubmit={handleSubmit} method="POST">
                   <div className="form-group py-2">
                     <div className="input-field">
                       <span className="far p-2">
                         <FaUser />
                       </span>
                       <input
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
                         type="text"
                         placeholder="Votre nom complet"
                         required=""
@@ -53,6 +73,8 @@ const SignUpPage = () => {
                         <FaPhoneAlt />
                       </span>
                       <input
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
                         type="text"
                         placeholder="Votre numéro de téléphone"
                         required=""
@@ -70,6 +92,8 @@ const SignUpPage = () => {
                         <FaMailBulk />
                       </span>
                       <input
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         type="text"
                         placeholder="Votre adresse email"
                         required=""
@@ -82,15 +106,17 @@ const SignUpPage = () => {
                         <FaLock />
                       </span>
                       <input
-                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        type={showPassword ? "text" : "password"}
                         placeholder="Tapez votre mot de passe"
                         required=""
                       />
-                      <button className="btn bg-white text-muted">
+                      <div  onClick={() => setShowPassword(!showPassword)} className="btn bg-white text-muted">
                         <span className="far">
-                          <FaEyeSlash />
+                        {showPassword ? <FaEyeSlash /> : <FaEye />}
                         </span>
-                      </button>
+                      </div>
                     </div>
                   </div>
                   <div className="form-group py-1 pb-2">
@@ -99,15 +125,17 @@ const SignUpPage = () => {
                         <FaLock />
                       </span>
                       <input
-                        type="password"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        type={showPassword ? "text" : "password"}
                         placeholder="Confirmer votre mot de passe"
                         required=""
                       />
-                      <button className="btn bg-white text-muted">
+                      <div onClick={() => setShowPassword(!showPassword)} className="btn bg-white text-muted">
                         <span className="far">
-                          <FaEyeSlash />
+                        {showPassword ? <FaEyeSlash /> : <FaEye />}
                         </span>
-                      </button>
+                      </div>
                     </div>
                   </div>
 
@@ -120,12 +148,18 @@ const SignUpPage = () => {
                       Mot de passe oublié?
                     </a> */}
                   </div>
-                  <button className="btn btn-primary btn-block mt-3">
+                  <button
+                    type="submit"
+                    className="btn btn-primary btn-block mt-3"
+                    disabled={isLoading}
+                  >
                     S'inscrire
                   </button>
                   {/* <div className="text-center pt-4 text-muted">
                     Vous n'avez pas de compte ? <a href="#">S'inscrire</a>
                   </div> */}
+                  <br />
+                  {error && <div className={bootstrapClassname}>{error}</div>}
                 </form>
               </div>
             </div>

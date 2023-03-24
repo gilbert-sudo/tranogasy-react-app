@@ -49,15 +49,15 @@ const Navbar = () => {
               <li className="nav__item mt-3">
                 {" "}
                 <NavLink
-                  to="/login"
+                  to="/user"
                   style={
-                    activePage === "/login"
+                    activePage === "/user"
                       ? { color: "#7cbd1e" }
                       : { color: "#222B2A" }
                   }
                   className="nav__link"
                   onClick={() => {
-                    dispatch(updateActiveLink("/login"));
+                    dispatch(updateActiveLink("/user"));
                   }}
                 >
                   <BiBookAlt className="nav__icon" />
@@ -91,15 +91,15 @@ const Navbar = () => {
               <li className="nav__item mt-3">
                 {" "}
                 <NavLink
-                  to="/user"
+                  to="/login"
                   style={
-                    activePage === "/user"
+                    activePage === "/login"
                       ? { color: "#7cbd1e" }
                       : { color: "#222B2A" }
                   }
                   className="nav__link"
                   onClick={() => {
-                    dispatch(updateActiveLink("/user"));
+                    dispatch(updateActiveLink("/login"));
                   }}
                 >
                   <BiUser className="nav__icon" />

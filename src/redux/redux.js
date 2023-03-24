@@ -1,5 +1,18 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
+//connected user
+const userSlice = createSlice({
+  name: "user",
+  initialState: null,
+  reducers: {
+    setUser: (state, action) => {
+      return action.payload;
+    },
+  },
+});
+
+export const { setUser } = userSlice.actions;
+
 //paginnations
 const paginationSlice = createSlice({
   name: "pagination",
@@ -52,8 +65,9 @@ export const { setProperties } = propertiesSlice.actions;
 
 export const store = configureStore({
   reducer: {
+    user: userSlice.reducer,
     pagination: paginationSlice.reducer,
     topProperties: topPropertiesSlice.reducer,
-    properties: propertiesSlice.reducer,
+    properties: propertiesSlice.reducer
   },
 });
