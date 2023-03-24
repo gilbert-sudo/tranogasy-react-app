@@ -28,7 +28,7 @@ const UserPage = () => {
           <div className="media p-2">
             <img
               alt=""
-              src="https://ik.imagekit.io/ryxb55mhk/Tranogasy/user3.png?updatedAt=1679563059043"
+              src="https://ik.imagekit.io/ryxb55mhk/Tranogasy/user-thumbail.png?updatedAt=1679574248519"
               className="mr-1 align-self-start"
             />
             <div className="media-body">
@@ -65,7 +65,7 @@ const UserPage = () => {
               </i>
             </li>
             <li>
-              <i className="fas mr-3 ml-1" style={{color: "#0ed145"}}>
+              <i className="fas mr-3 ml-1" style={{color: "#7cbd1e"}}>
                 <BiLogOutCircle className="mr-2" style={{fontSize: "20px"}}/>
                 Se déconnecter
               </i>

@@ -4,6 +4,7 @@ import PageLoader from "./pages/PageLoader";
 import PropertyDetailsPage from "./pages/PropertyDetailsPage";
 import LoginPage from "./pages/LoginPage";
 import UserPage from "./pages/UserPage";
+import SignUpPage from "./pages/SignUpPage";
 import Navbar from "./components/Navbar";
 import { useSelector } from "react-redux";
 
@@ -21,6 +22,7 @@ function App() {
             <Route path="/loader" element={<PageLoader />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/user" element={<UserPage />} />
+            <Route path="/signup" element={<SignUpPage />} />
           </Routes>
         </div>
       </BrowserRouter>

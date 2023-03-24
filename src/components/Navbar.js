@@ -1,5 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, useLocation } from "react-redux";
 import { updateActiveLink } from "../redux/redux";
 
 import {
@@ -14,6 +14,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.pagination);
   const activePage = state[2].activeLink;
+  
 
   return (
     <>
@@ -21,7 +22,8 @@ const Navbar = () => {
       <div className="header" id="header">
         <div className="navigation container">
           <Link to="/" className="nav__logo">
-            <trano style={{color:"#0ed145"}}>Trano</trano><gasy style={{color:"#ec1c24"}}>Gasy</gasy>.
+            <trano style={{ color: "#7cbd1e" }}>Trano</trano>
+            <gasy style={{ color: "#ec1c24" }}>Gasy</gasy>.
           </Link>
           <div className="nav__menu" id="nav-menu">
             <ul className="nav__list">
@@ -30,9 +32,9 @@ const Navbar = () => {
                   to="/"
                   style={
                     activePage === "/"
-                      ? { color: "#0ed145" }
-                      // ? { color: "#26A699" }
-                      : { color: "#222B2A" }
+                      ? { color: "#7cbd1e" }
+                      : // ? { color: "#26A699" }
+                        { color: "#222B2A" }
                   }
                   className="nav__link"
                   onClick={() => {
@@ -43,14 +45,14 @@ const Navbar = () => {
                   <span className="nav__name">Acceuil</span>
                 </NavLink>
               </li>
-           
+
               <li className="nav__item mt-3">
-              {" "}
+                {" "}
                 <NavLink
                   to="/login"
                   style={
                     activePage === "/login"
-                      ? { color: "#0ed145" }
+                      ? { color: "#7cbd1e" }
                       : { color: "#222B2A" }
                   }
                   className="nav__link"
@@ -63,10 +65,22 @@ const Navbar = () => {
                 </NavLink>
               </li>
               <li className="nav__item mt-3">
-                <a href="#portfolio" className="nav__link">
+                {" "}
+                <NavLink
+                  to="/signup"
+                  style={
+                    activePage === "/signup"
+                      ? { color: "#7cbd1e" }
+                      : { color: "#222B2A" }
+                  }
+                  className="nav__link"
+                  onClick={() => {
+                    dispatch(updateActiveLink("/signup"));
+                  }}
+                >
                   <BiBriefcaseAlt className="nav__icon" />
-                  <span className="nav__name">Portfolio</span>
-                </a>
+                  <span className="nav__name">Connexion</span>
+                </NavLink>
               </li>
               <li className="nav__item mt-3">
                 <a href="#contactme" className="nav__link">
@@ -80,7 +94,7 @@ const Navbar = () => {
                   to="/user"
                   style={
                     activePage === "/user"
-                      ? { color: "#0ed145" }
+                      ? { color: "#7cbd1e" }
                       : { color: "#222B2A" }
                   }
                   className="nav__link"

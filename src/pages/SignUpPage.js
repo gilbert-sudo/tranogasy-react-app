@@ -1,13 +1,11 @@
-import { useState } from "react";
-import { FaLock, FaEyeSlash, FaEye, FaPhoneAlt } from "react-icons/fa";
-const LoginPage = () => {
-
-  const [showPassword, setShowPassword] = useState(false);
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log('hello word');
-  }
+import {
+  FaLock,
+  FaEyeSlash,
+  FaUser,
+  FaPhoneAlt,
+  FaMailBulk,
+} from "react-icons/fa";
+const SignUpPage = () => {
   // Render the main content
 
   return (
@@ -33,11 +31,23 @@ const LoginPage = () => {
           <div className="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
             <div className="panel border bg-white">
               <div className="panel-heading">
-                <h3 className="pt-3 font-weight-bold">Connexion</h3>
+                <h3 className="pt-3 font-weight-bold">Inscription</h3>
               </div>
               <div className="panel-body p-3">
-                <form action="" onSubmit={handleSubmit}>
+                <form action="login_script.php" method="POST">
                   <div className="form-group py-2">
+                    <div className="input-field">
+                      <span className="far p-2">
+                        <FaUser />
+                      </span>
+                      <input
+                        type="text"
+                        placeholder="Votre nom complet"
+                        required=""
+                      />
+                    </div>
+                  </div>
+                  <div className="form-group py-2 mb-0">
                     <div className="input-field">
                       <span className="far p-2">
                         <FaPhoneAlt />
@@ -49,69 +59,74 @@ const LoginPage = () => {
                       />
                     </div>
                   </div>
+                  <div className="form-group py-2">
+                    <label htmlFor="remember">
+                      <small className="text-danger">
+                        <strong>(L'adresse email n'est pas obligatoire)</strong>
+                      </small>
+                    </label>
+                    <div className="input-field">
+                      <span className="far p-2">
+                        <FaMailBulk />
+                      </span>
+                      <input
+                        type="text"
+                        placeholder="Votre adresse email"
+                        required=""
+                      />
+                    </div>
+                  </div>
                   <div className="form-group py-1 pb-2">
                     <div className="input-field">
                       <span className="fas px-2">
                         <FaLock />
                       </span>
                       <input
-                        type={showPassword ? "text" : "password"}
+                        type="password"
                         placeholder="Tapez votre mot de passe"
                         required=""
                       />
-                      <div className="btn bg-white text-muted" onClick={() => setShowPassword(!showPassword)}>
-                        <span className="far">{showPassword ? <FaEyeSlash /> : <FaEye />}</span>
-                      </div>
+                      <button className="btn bg-white text-muted">
+                        <span className="far">
+                          <FaEyeSlash />
+                        </span>
+                      </button>
                     </div>
                   </div>
+                  <div className="form-group py-1 pb-2">
+                    <div className="input-field">
+                      <span className="fas px-2">
+                        <FaLock />
+                      </span>
+                      <input
+                        type="password"
+                        placeholder="Confirmer votre mot de passe"
+                        required=""
+                      />
+                      <button className="btn bg-white text-muted">
+                        <span className="far">
+                          <FaEyeSlash />
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+
                   <div className="form-inline">
-                    {/* <input type="checkbox" name="remember" id="remember" />
-                    <label htmlFor="remember" className="text-muted">
+                    {/*<input type="checkbox" name="remember" id="remember" />
+                     <label htmlFor="remember" className="text-muted">
                       Enregistrer des données
                     </label> */}
-                    <a to="#" id="forgot" className="font-weight-bold" style={{ color: "#7cbd1e"}}>
+                    {/* <a to="#" id="forgot" className="font-weight-bold" style={{ color: "#7cbd1e"}}>
                       Mot de passe oublié?
-                    </a>
+                    </a> */}
                   </div>
-                  <button className="btn btn-primary btn-block mt-3">Se connecter</button>
-                  <div className="text-center pt-4 text-muted">
+                  <button className="btn btn-primary btn-block mt-3">
+                    S'inscrire
+                  </button>
+                  {/* <div className="text-center pt-4 text-muted">
                     Vous n'avez pas de compte ? <a href="#">S'inscrire</a>
-                  </div>
+                  </div> */}
                 </form>
-              </div>
-              <div className="mx-3 my-2 py-2 bordert">
-                <div className="text-center py-3">
-                  <a
-                    href="https://wwww.facebook.com"
-                    target="_blank"
-                    className="px-2"
-                  >
-                    <img
-                      src="https://www.dpreview.com/files/p/articles/4698742202/facebook.jpeg"
-                      alt=""
-                    />
-                  </a>
-                  <a
-                    href="https://www.google.com"
-                    target="_blank"
-                    className="px-2"
-                  >
-                    <img
-                      src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png"
-                      alt=""
-                    />
-                  </a>
-                  <a
-                    href="https://www.github.com"
-                    target="_blank"
-                    className="px-2"
-                  >
-                    <img
-                      src="https://www.freepnglogos.com/uploads/512x512-logo-png/512x512-logo-github-icon-35.png"
-                      alt=""
-                    />
-                  </a>
-                </div>
               </div>
             </div>
           </div>
@@ -121,4 +136,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default SignUpPage;
