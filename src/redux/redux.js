@@ -19,7 +19,7 @@ const paginationSlice = createSlice({
   initialState: [
     { currentPage: 1, totalPage: 0 },
     { itemsPerPage: 2, startIndex: 0, endIndex: 0 },
-    { activeLink: "/"}
+    { activeLink: "/" },
   ],
   reducers: {
     updateCurrentPage: (state, action) => {
@@ -35,7 +35,12 @@ const paginationSlice = createSlice({
     },
   },
 });
-export const { updateCurrentPage, setTotalPage, setResetAgentInput, updateActiveLink } = paginationSlice.actions;
+export const {
+  updateCurrentPage,
+  setTotalPage,
+  setResetAgentInput,
+  updateActiveLink,
+} = paginationSlice.actions;
 
 //Top50Properties
 const topPropertiesSlice = createSlice({
@@ -63,11 +68,28 @@ const propertiesSlice = createSlice({
 
 export const { setProperties } = propertiesSlice.actions;
 
+//liked properties
+const likedPropertiesSlice = createSlice({
+  name: "likedProperties",
+  initialState: null,
+  reducers: {
+    setLikedPropreties: (state, action) => {
+      return action.payload;
+    },
+    updateLikedPropreties: (state, action) => {
+      return state.push(action.payload);
+    },
+  },
+});
+
+export const { setLikedPropreties, updateLikedPropreties } = likedPropertiesSlice.actions;
+
 export const store = configureStore({
   reducer: {
     user: userSlice.reducer,
     pagination: paginationSlice.reducer,
     topProperties: topPropertiesSlice.reducer,
-    properties: propertiesSlice.reducer
+    properties: propertiesSlice.reducer,
+    likedProperties: likedPropertiesSlice.reducer,
   },
 });

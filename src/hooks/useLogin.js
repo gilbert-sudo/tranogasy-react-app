@@ -66,6 +66,8 @@ export const useLogin = () => {
       setIsLoading(false);
     }
   };
+
+
   const loginWith = async () => {
     const response = await fetch(
       `${process.env.REACT_APP_PROXY}/connexion/login/success`
@@ -82,6 +84,8 @@ export const useLogin = () => {
       localStorage.setItem("user", JSON.stringify(json));
       //dispatch(setUser(json));
     }
+
+    
   };
   return { loginWith, login, isLoading, error, bootstrapClassname };
 };

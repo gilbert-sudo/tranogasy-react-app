@@ -131,7 +131,6 @@ const LoginPage = () => {
                       alt=""
                     />
                   </a>
-                  <button >
                     <a
                     onClick={loginWithGoogle}
                       target="_blank"
@@ -142,7 +141,6 @@ const LoginPage = () => {
                         alt=""
                       />
                     </a>
-                  </button>
                   <a
                     href="https://www.github.com"
                     target="_blank"

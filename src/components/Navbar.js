@@ -47,15 +47,15 @@ const Navbar = () => {
               <li className="nav__item mt-3">
                 {" "}
                 <NavLink
-                  to="/user"
+                  to="/favorite"
                   style={
-                    activePage === "/user"
+                    activePage === "/favorite"
                       ? { color: "#7cbd1e" }
                       : { color: "#222B2A" }
                   }
                   className="nav__link"
                   onClick={() => {
-                    dispatch(updateActiveLink("/user"));
+                    dispatch(updateActiveLink("/favorite"));
                   }}
                 >
                   <BiHeart className="nav__icon" />
