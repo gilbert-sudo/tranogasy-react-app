@@ -11,17 +11,32 @@ import Navbar from "./components/Navbar";
 import { useSelector, useDispatch } from "react-redux";
 import { setUser } from "./redux/redux";
 import { useEffect } from "react";
-
+import { useLogin } from "./hooks/useLogin";
+import axios from "axios";
 function App() {
+  const { loginWith } = useLogin();
   const topProperties = useSelector((state) => state.topProperties);
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
+
+  // const getUser = async () => {
+	// 	try {
+	// 		const url = `${process.env.REACT_APP_API_URL}/auth/login/success`;
+	// 		const { data } = await axios.get(url, { withCredentials: true });
+	// 		console.log(data)
+  //     		} catch (err) {
+	// 		console.log(err);
+	// 	}
+	// };
+
 
   useEffect(() => {
     if (!user) {
       const localUser = JSON.parse(localStorage.getItem('user'))
       if (localUser) {
         dispatch(setUser(localUser));
+      }else{
+        loginWith();
       }
     }
   }, [user, dispatch]);

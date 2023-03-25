@@ -15,6 +15,12 @@ const LoginPage = () => {
     console.log(phoneNumber, password);
     login(phoneNumber, password);
   };
+  const loginWithFb = (e) => {
+    fetch(`http://localhost:3600/connexion/auth/facebook`);
+  };
+  const loginWithGoogle = (e) => {
+    window.open(`${process.env.REACT_APP_PROXY}/connexion/auth/google`, "_self");
+  };
 
   // Render the main content
 
@@ -54,7 +60,7 @@ const LoginPage = () => {
                         value={phoneNumber}
                         type="text"
                         placeholder="Votre numéro de téléphone"
-                        required=""
+                        required
                         onChange={(e) => setPhoneNumber(e.target.value)}
                       />
                     </div>
@@ -68,7 +74,7 @@ const LoginPage = () => {
                         value={password}
                         type={showPassword ? "text" : "password"}
                         placeholder="Tapez votre mot de passe"
-                        required=""
+                        required
                         onChange={(e) => setPassword(e.target.value)}
                       />
                       <div
@@ -102,35 +108,41 @@ const LoginPage = () => {
                   >
                     Se connecter
                   </button>
-                  <div className="text-center pt-4 text-muted">
-                    Vous n'avez pas de compte ? <Link to="/signup"><strong>S'inscrire</strong></Link>
-                  </div>
-
+                  <br></br>
                   {error && <div className={bootstrapClassname}>{error}</div>}
+                  <div className="text-center pt-4 text-muted">
+                    Vous n'avez pas de compte ?{" "}
+                    <Link to="/signup">
+                      <strong>S'inscrire</strong>
+                    </Link>
+                  </div>
                 </form>
               </div>
               <div className="mx-3 my-2 py-2 bordert">
                 <div className="text-center py-3">
                   <a
-                    href="https://wwww.facebook.com"
+                    href=""
                     target="_blank"
                     className="px-2"
+                    onClick={loginWithFb}
                   >
                     <img
                       src="https://www.dpreview.com/files/p/articles/4698742202/facebook.jpeg"
                       alt=""
                     />
                   </a>
-                  <a
-                    href="https://www.google.com"
-                    target="_blank"
-                    className="px-2"
-                  >
-                    <img
-                      src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png"
-                      alt=""
-                    />
-                  </a>
+                  <button >
+                    <a
+                    onClick={loginWithGoogle}
+                      target="_blank"
+                      className="px-2"
+                    >
+                      <img
+                        src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png"
+                        alt=""
+                      />
+                    </a>
+                  </button>
                   <a
                     href="https://www.github.com"
                     target="_blank"

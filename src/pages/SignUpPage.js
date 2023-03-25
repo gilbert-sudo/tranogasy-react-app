@@ -63,7 +63,7 @@ const SignUpPage = () => {
                         onChange={(e) => setUsername(e.target.value)}
                         type="text"
                         placeholder="Votre nom complet"
-                        required=""
+                        required
                       />
                     </div>
                   </div>
@@ -77,7 +77,7 @@ const SignUpPage = () => {
                         onChange={(e) => setPhone(e.target.value)}
                         type="text"
                         placeholder="Votre numéro de téléphone"
-                        required=""
+                        required
                       />
                     </div>
                   </div>
@@ -96,7 +96,6 @@ const SignUpPage = () => {
                         onChange={(e) => setEmail(e.target.value)}
                         type="text"
                         placeholder="Votre adresse email"
-                        required=""
                       />
                     </div>
                   </div>
@@ -110,7 +109,7 @@ const SignUpPage = () => {
                         onChange={(e) => setPassword(e.target.value)}
                         type={showPassword ? "text" : "password"}
                         placeholder="Tapez votre mot de passe"
-                        required=""
+                        required
                       />
                       <div  onClick={() => setShowPassword(!showPassword)} className="btn bg-white text-muted">
                         <span className="far">
@@ -129,7 +128,7 @@ const SignUpPage = () => {
                         onChange={(e) => setConfirmPassword(e.target.value)}
                         type={showPassword ? "text" : "password"}
                         placeholder="Confirmer votre mot de passe"
-                        required=""
+                        required
                       />
                       <div onClick={() => setShowPassword(!showPassword)} className="btn bg-white text-muted">
                         <span className="far">
