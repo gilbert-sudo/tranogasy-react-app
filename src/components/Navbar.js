@@ -1,12 +1,12 @@
 import { Link, NavLink } from "react-router-dom";
-import { useDispatch, useSelector, useLocation } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateActiveLink } from "../redux/redux";
 
 import {
   BiHome,
   BiUser,
-  BiBookAlt,
-  BiBriefcaseAlt,
+  BiHeart,
+  BiCalendar,
   BiMessageSquareDetail,
 } from "react-icons/bi";
 
@@ -14,7 +14,6 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.pagination);
   const activePage = state[2].activeLink;
-  
 
   return (
     <>
@@ -45,7 +44,6 @@ const Navbar = () => {
                   <span className="nav__name">Acceuil</span>
                 </NavLink>
               </li>
-
               <li className="nav__item mt-3">
                 {" "}
                 <NavLink
@@ -60,33 +58,44 @@ const Navbar = () => {
                     dispatch(updateActiveLink("/user"));
                   }}
                 >
-                  <BiBookAlt className="nav__icon" />
-                  <span className="nav__name">Connexion</span>
+                  <BiHeart className="nav__icon" />
+                  <span className="nav__name">Favoris</span>
                 </NavLink>
               </li>
               <li className="nav__item mt-3">
                 {" "}
                 <NavLink
-                  to="/signup"
+                  to="/booking"
                   style={
-                    activePage === "/signup"
+                    activePage === "/booking"
                       ? { color: "#7cbd1e" }
                       : { color: "#222B2A" }
                   }
                   className="nav__link"
                   onClick={() => {
-                    dispatch(updateActiveLink("/signup"));
+                    dispatch(updateActiveLink("/booking"));
                   }}
                 >
-                  <BiBriefcaseAlt className="nav__icon" />
-                  <span className="nav__name">Connexion</span>
+                  <BiCalendar className="nav__icon" />
+                  <span className="nav__name">Réservation</span>
                 </NavLink>
               </li>
               <li className="nav__item mt-3">
-                <a href="#contactme" className="nav__link">
+                <NavLink
+                  to="/message"
+                  style={
+                    activePage === "/message"
+                      ? { color: "#7cbd1e" }
+                      : { color: "#222B2A" }
+                  }
+                  className="nav__link"
+                  onClick={() => {
+                    dispatch(updateActiveLink("/message"));
+                  }}
+                >
                   <BiMessageSquareDetail className="nav__icon" />
-                  <span className="nav__name">Contactme</span>
-                </a>
+                  <span className="nav__name">Message</span>
+                </NavLink>
               </li>
               <li className="nav__item mt-3">
                 {" "}

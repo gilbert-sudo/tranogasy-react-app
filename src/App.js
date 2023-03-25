@@ -5,6 +5,8 @@ import PropertyDetailsPage from "./pages/PropertyDetailsPage";
 import LoginPage from "./pages/LoginPage";
 import UserPage from "./pages/UserPage";
 import SignUpPage from "./pages/SignUpPage";
+import MessagePage from "./pages/MessagePage";
+import BookingPage from "./pages/BookingPage";
 import Navbar from "./components/Navbar";
 import { useSelector, useDispatch } from "react-redux";
 import { setUser } from "./redux/redux";
@@ -36,6 +38,8 @@ function App() {
             <Route path="/user" element={user ? <UserPage /> : <Navigate to="/login"/>} />
             <Route path="/login" element={!user ? <LoginPage /> : <Navigate to="/user"/>} />
             <Route path="/signup" element={!user ? <SignUpPage /> : <Navigate to="/user"/>} />
+            <Route path="/message" element={user ? <MessagePage /> : <Navigate to="/login"/>} />
+            <Route path="/booking" element={user ? <BookingPage /> : <Navigate to="/login"/>} />
           </Routes>
         </div>
       </BrowserRouter>
