@@ -19,14 +19,12 @@
   --body-font: 'Open Sans', sans-serif;
   --h1-font-size: 1.5rem;
   --normal-font-size: .938rem;
-  --tiny-font-size: .725rem;
+  --tiny-font-size: .700rem;
 
   /*========== z index ==========*/
   --z-tooltip: 10;
   --z-fixed: 100;
 }
-
-
 
 /*=============== BASE ===============*/
 * {
