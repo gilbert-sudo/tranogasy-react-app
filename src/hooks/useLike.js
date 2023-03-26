@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { updateLikedPropreties } from "../redux/redux"
+import { updateLikes } from "../redux/redux"
 
 export const useLike = () => {
 
@@ -31,7 +31,7 @@ export const useLike = () => {
 
     if (response.ok) {
       setError({ error: false });
-      dispatch(updateLikedPropreties(json))
+      dispatch(updateLikes(json))
     }
     if (!response.ok) {
       setError({ error: true });

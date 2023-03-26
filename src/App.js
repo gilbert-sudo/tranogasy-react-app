@@ -15,7 +15,7 @@ import { useEffect } from "react";
 
 function App() {
   // const topProperties = useSelector((state) => state.topProperties);
-  const likedProperties = useSelector((state) => state.likedProperties);
+  const topProperties = useSelector((state) => state.topProperties);
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
@@ -32,10 +32,10 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        {likedProperties && <Navbar />}
+        {topProperties && <Navbar />}
         <div className="pages">
           <Routes>
-            <Route path="/" element={likedProperties ? <Home /> : <Navigate to="/loader"/>} />
+            <Route path="/" element={topProperties ? <Home /> : <Navigate to="/loader"/>} />
             <Route path="/property/:id" element={<PropertyDetailsPage />} />
             <Route path="/loader" element={<PageLoader />} />
             <Route path="/user" element={user ? <UserPage /> : <Navigate to="/login"/>} />

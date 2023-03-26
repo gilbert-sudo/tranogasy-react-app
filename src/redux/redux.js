@@ -74,15 +74,15 @@ const likedPropertiesSlice = createSlice({
   initialState: null,
   reducers: {
     setLikedPropreties: (state, action) => {
-      return action.payload;
+      return [...action.payload];
     },
-    updateLikedPropreties: (state, action) => {
-      return state.push(action.payload);
+    updateLikes: (state, action) => {
+      state.push(action.payload);
     },
   },
 });
 
-export const { setLikedPropreties, updateLikedPropreties } = likedPropertiesSlice.actions;
+export const { setLikedPropreties, updateLikes } = likedPropertiesSlice.actions;
 
 export const store = configureStore({
   reducer: {

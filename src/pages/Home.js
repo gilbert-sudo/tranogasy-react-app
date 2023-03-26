@@ -5,22 +5,40 @@ import PropertyFilter from "../components/PropertyFilter";
 import HomeSlider from "../components/HomeSlider";
 import { setTotalPage } from "../redux/redux";
 import { useDispatch, useSelector } from "react-redux";
+import { useLoader } from "../hooks/useLoader";
+import { useEffect } from "react";
+
 const Home = () => {
   //redux
   const dispatch = useDispatch();
+  const { loadLikes } = useLoader();
   const paginationIndex = useSelector((state) => state.pagination);
   const topProperties = useSelector((state) => state.topProperties);
+  const likedPropertiesState = useSelector((state) => state.likedProperties);
+  const user = useSelector((state) => state.user);
 
   if (topProperties) {
     dispatch(setTotalPage(topProperties.length));
   }
-  if (paginationIndex[0].currentPage != 1) {
+  if (paginationIndex[0].currentPage !== 1) {
     // scroll to top of the page
     const element = document.getElementById("prodisplay");
     if (element) {
       element.scrollIntoView();
     }
   }
+
+  useEffect(() => {
+    const pageLoader = () => {
+      if (user) {
+        if (!likedPropertiesState) {
+          const userId = user.client._id;
+          loadLikes(userId);
+        }
+      }
+    };
+    pageLoader();
+  }, [user, loadLikes, likedPropertiesState]);
 
   return (
     <div className="home">

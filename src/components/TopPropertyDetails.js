@@ -9,13 +9,17 @@ function TopPropertyDetails({ topProperty }) {
   const { like } = useLike();
   const [isliked, setIsliked] = useState(false);
   //redux
-  const user = useSelector((state) => state.user.client);
+  const user = useSelector((state) => state.user);
+  var userId = null;
   const likedPropertiesState = useSelector((state) => state.likedProperties);
-  const userId = user._id;
-
+  
   const propertyId = topProperty.property._id;
   const cityId = topProperty.city._id;
-  const imageId = topProperty.images._id;
+  const imageId = topProperty.images[0]._id;
+
+  if (user) {
+    userId = user.client._id;
+  }
   //click the like button
   const handleLike = () => {
     like(userId, propertyId, cityId, imageId);
@@ -24,15 +28,22 @@ function TopPropertyDetails({ topProperty }) {
 
   useEffect(() => {
     const verifyLikeButton = () => {
-      const likedProperties = likedPropertiesState.filter(
-        (liked) => liked.property._id === propertyId
-      );
-      if (likedProperties.length !== 0) {
-        setIsliked(true);
+      if (likedPropertiesState) {
+        const likedProperties = likedPropertiesState.filter(
+          (liked) => liked.property._id === propertyId
+        );
+        const otherLikedProperties = likedPropertiesState.filter(
+          (liked) => liked.property === propertyId
+        );
+        if (likedProperties.length !== 0 || otherLikedProperties.length !==0) {
+          setIsliked(true);
+        }
       }
     };
-    verifyLikeButton();
-  }, [likedPropertiesState, propertyId]);
+    if (user) {
+      verifyLikeButton();
+    }
+  }, [likedPropertiesState, propertyId, user]);
   return (
     <div className="col-md-6 col-lg-4 mb-4">
       <div className="property-entry h-100">
@@ -58,8 +69,8 @@ function TopPropertyDetails({ topProperty }) {
               <FiHeart />
             </div>
           ) : (
-            <div className="property-favorite">
-              <FaHeart onClick={handleLike} />
+            <div className="property-favorite"  onClick={handleLike}>
+              <FaHeart/>
             </div>
           )}
           <h2 className="property-title">
