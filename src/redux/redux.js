@@ -13,6 +13,19 @@ const userSlice = createSlice({
 
 export const { setUser } = userSlice.actions;
 
+//connected user
+const googleLoginSlice = createSlice({
+  name: "googleLogin",
+  initialState: {googleLogin: false},
+  reducers: {
+    setGoogleLogin: (state, action) => {
+      return action.payload;
+    },
+  },
+});
+
+export const { setGoogleLogin } = googleLoginSlice.actions;
+
 //paginnations
 const paginationSlice = createSlice({
   name: "pagination",
@@ -91,5 +104,6 @@ export const store = configureStore({
     topProperties: topPropertiesSlice.reducer,
     properties: propertiesSlice.reducer,
     likedProperties: likedPropertiesSlice.reducer,
+    googleLogin: googleLoginSlice.reducer,
   },
 });

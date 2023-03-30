@@ -18,7 +18,7 @@ function TopPropertyDetails({ topProperty }) {
   const imageId = topProperty.images[0]._id;
 
   if (user) {
-    userId = user.client._id;
+    userId = user._id;
   }
   //click the like button
   const handleLike = () => {

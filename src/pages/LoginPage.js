@@ -15,11 +15,12 @@ const LoginPage = () => {
     console.log(phoneNumber, password);
     login(phoneNumber, password);
   };
-  const loginWithFb = (e) => {
-    fetch(`http://localhost:3600/connexion/auth/facebook`);
-  };
-  const loginWithGoogle = (e) => {
-    window.open(`${process.env.REACT_APP_PROXY}/connexion/auth/google`, "_self");
+
+  const loginWithGoogle = async () => {
+    window.open(
+      `${process.env.REACT_APP_PROXY}/connexion/auth/google`,
+      "_self"
+    );
   };
 
   // Render the main content
@@ -124,23 +125,23 @@ const LoginPage = () => {
                     href=""
                     target="_blank"
                     className="px-2"
-                    onClick={loginWithFb}
                   >
                     <img
                       src="https://www.dpreview.com/files/p/articles/4698742202/facebook.jpeg"
                       alt=""
                     />
                   </a>
-                    <a
+                  <Link
+                    to="#"
+                    target="_blank"
+                    className="px-2"
                     onClick={loginWithGoogle}
-                      target="_blank"
-                      className="px-2"
-                    >
-                      <img
-                        src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png"
-                        alt=""
-                      />
-                    </a>
+                  >
+                    <img
+                      src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png"
+                      alt=""
+                    />
+                  </Link>
                   <a
                     href="https://www.github.com"
                     target="_blank"

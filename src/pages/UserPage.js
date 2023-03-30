@@ -6,7 +6,7 @@ import { useLogout } from "../hooks/useLogout"
 const UserPage = () => {
   const { logout } = useLogout();
   //redux
-  const user = useSelector((state) => state.user.client);
+  const user = useSelector((state) => state.user);
   // Render the main content
 
   return (

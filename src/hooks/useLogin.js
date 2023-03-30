@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { setUser } from "../redux/redux";
+import { useDispatch } from "react-redux";
+import { setUser, setGoogleLogin } from "../redux/redux";
+import axios from "axios";
 
 export const useLogin = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -9,7 +10,6 @@ export const useLogin = () => {
 
   //redux
   const dispatch = useDispatch();
-  const userState = useSelector((state) => state.user);
 
   const login = async (phoneNumber, password) => {
     setIsLoading(true);
@@ -67,25 +67,22 @@ export const useLogin = () => {
     }
   };
 
-
   const loginWith = async () => {
-    const response = await fetch(
-      `${process.env.REACT_APP_PROXY}/connexion/login/success`
-    );
-
-    const json = await response.json();
-
-    if (!response.ok) {
-      console.log("the loginWith is not ok");
+    try {
+      const url = `${process.env.REACT_APP_PROXY}/connexion/login/success`;
+      axios.get(url, { withCredentials: true }).then((response) => {
+        if (response.data.client) {
+          localStorage.setItem("user", JSON.stringify(response.data));
+          dispatch(setUser(response.data.client))
+          dispatch(setGoogleLogin({googleLogin: true}))
+        }
+      }).catch((error) => {
+        console.log(error);
+      });
+    } catch (error) {
+      console.log(error);
     }
-
-    if (response.ok) {
-      console.log(json);
-      localStorage.setItem("user", JSON.stringify(json));
-      //dispatch(setUser(json));
-    }
-
-    
   };
+
   return { loginWith, login, isLoading, error, bootstrapClassname };
 };

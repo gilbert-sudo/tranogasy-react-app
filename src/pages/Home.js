@@ -32,7 +32,7 @@ const Home = () => {
     const pageLoader = () => {
       if (user) {
         if (!likedPropertiesState) {
-          const userId = user.client._id;
+          const userId = user._id;
           loadLikes(userId);
         }
       }
