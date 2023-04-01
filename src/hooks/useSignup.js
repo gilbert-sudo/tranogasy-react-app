@@ -60,6 +60,7 @@ export const useSignup = () => {
                   setIsLoading(false);
                   localStorage.setItem("user", JSON.stringify(json));
                   dispatch(setUser(json.client))
+                  window.location.href = `${process.env.REACT_APP_CLIENT}/loader`
 
                 }
                 if (!response.ok) {
