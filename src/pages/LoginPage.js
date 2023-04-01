@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { FaLock, FaEyeSlash, FaEye, FaPhoneAlt } from "react-icons/fa";
 import { useLogin } from "../hooks/useLogin";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const { login, isLoading, error, bootstrapClassname } = useLogin();
 
@@ -14,6 +15,7 @@ const LoginPage = () => {
     e.preventDefault();
     console.log(phoneNumber, password);
     login(phoneNumber, password);
+    navigate("/loader");
   };
 
   const loginWithGoogle = async () => {

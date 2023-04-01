@@ -47,10 +47,11 @@ export const useLogin = () => {
           }
 
           if (response.ok) {
-            localStorage.setItem("user", JSON.stringify(json));
             setBootstrap("alert alert-success");
             setError("Vous vous êtes connecté(e) maintenant!");
-            window.location.href = '/';
+            localStorage.setItem("user", JSON.stringify(json));
+            dispatch(setUser(json.client));
+            setIsLoading(false);
           }
         } catch (error) {
           setBootstrap("alert alert-danger");
