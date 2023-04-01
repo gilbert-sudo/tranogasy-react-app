@@ -6,8 +6,10 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 function TopPropertyDetails({ topProperty }) {
-  const { like } = useLike();
+  const { like, disLike } = useLike();
   const [isliked, setIsliked] = useState(false);
+  const [likeId, setLikeId] = useState(null);
+
   //redux
   const user = useSelector((state) => state.user);
   var userId = null;
@@ -24,6 +26,11 @@ function TopPropertyDetails({ topProperty }) {
   const handleLike = () => {
     like(userId, propertyId, cityId, imageId);
   };
+  //click the disLike button
+  const handleDisLike = () => {
+    disLike(likeId);
+    setIsliked(false);
+  };
   //check the like button state
 
   useEffect(() => {
@@ -37,6 +44,7 @@ function TopPropertyDetails({ topProperty }) {
         );
         if (likedProperties.length !== 0 || otherLikedProperties.length !==0) {
           setIsliked(true);
+          setLikeId(likedProperties[0]._id);
         }
       }
     };
@@ -65,8 +73,9 @@ function TopPropertyDetails({ topProperty }) {
             <div
               className="property-favorite"
               style={{ background: "#f23a2e", color: "#fff" }}
+              onClick={handleDisLike}
             >
-              <FiHeart />
+              <FiHeart/>
             </div>
           ) : (
             <div className="property-favorite"  onClick={handleLike}>
