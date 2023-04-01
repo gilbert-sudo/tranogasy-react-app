@@ -47,11 +47,10 @@ export const useLogin = () => {
           }
 
           if (response.ok) {
-            setBootstrap("alert alert-success");
-            setError(" Vous vous êtes connecté(e) maintenant!");
+            window.location.href = `${process.env.REACT_APP_CLIENT}/loader`
             localStorage.setItem("user", JSON.stringify(json));
-            dispatch(setUser(json.client));
-            setIsLoading(false);
+            setBootstrap("alert alert-success");
+            setError("Vous vous êtes connecté(e) maintenant!");
           }
         } catch (error) {
           setBootstrap("alert alert-danger");
@@ -70,15 +69,18 @@ export const useLogin = () => {
   const loginWith = async () => {
     try {
       const url = `${process.env.REACT_APP_PROXY}/connexion/login/success`;
-      axios.get(url, { withCredentials: true }).then((response) => {
-        if (response.data.client) {
-          localStorage.setItem("user", JSON.stringify(response.data));
-          dispatch(setUser(response.data.client))
-          dispatch(setGoogleLogin({googleLogin: true}))
-        }
-      }).catch((error) => {
-        console.log(error);
-      });
+      axios
+        .get(url, { withCredentials: true })
+        .then((response) => {
+          if (response.data.client) {
+            localStorage.setItem("user", JSON.stringify(response.data));
+            dispatch(setUser(response.data.client));
+            dispatch(setGoogleLogin({ googleLogin: true }));
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     } catch (error) {
       console.log(error);
     }

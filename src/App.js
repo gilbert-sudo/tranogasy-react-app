@@ -26,7 +26,7 @@ function App() {
     if (!user) {
       const localUser = JSON.parse(localStorage.getItem("user"));
       if (localUser) {
-        dispatch(setUser(localUser));
+        dispatch(setUser(localUser.client));
       }
     }
   }, [user, dispatch]);
