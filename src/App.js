@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import Home from "./pages/Home";
 import PageLoader from "./pages/PageLoader";
 import PropertyDetailsPage from "./pages/PropertyDetailsPage";
@@ -13,6 +13,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { setUser } from "./redux/redux";
 import { useEffect } from "react";
 import { useLogin } from "./hooks/useLogin";
+
+function NotFound() {
+  const navigate = useNavigate();
+  useEffect(() => {
+    navigate("/");
+  }, [navigate]);
+
+  return null;
+}
 
 function App() {
   // const topProperties = useSelector((state) => state.topProperties);
@@ -33,7 +42,10 @@ function App() {
 
   useEffect(() => {
     if (!user) {
-      if (googleLogin.googleLogin !== undefined && googleLogin.googleLogin === false) {
+      if (
+        googleLogin.googleLogin !== undefined &&
+        googleLogin.googleLogin === false
+      ) {
         loginWith();
       }
     }
@@ -75,6 +87,7 @@ function App() {
               path="/favorite"
               element={user ? <FavoritePage /> : <Navigate to="/login" />}
             />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
       </BrowserRouter>
