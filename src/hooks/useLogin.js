@@ -47,10 +47,10 @@ export const useLogin = () => {
           }
 
           if (response.ok) {
-            window.location.href = `${process.env.REACT_APP_CLIENT}/loader`
             localStorage.setItem("user", JSON.stringify(json));
             setBootstrap("alert alert-success");
             setError("Vous vous êtes connecté(e) maintenant!");
+            window.location.href = `/loader`
           }
         } catch (error) {
           setBootstrap("alert alert-danger");

@@ -3,6 +3,7 @@ import { FaUserEdit, FaLock, FaPhoneAlt, FaMailBulk } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { useLogout } from "../hooks/useLogout"
 
+
 const UserPage = () => {
   const { logout } = useLogout();
   //redux
