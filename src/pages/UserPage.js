@@ -41,7 +41,7 @@ const UserPage = () => {
                 <h6 className="mt-2 mb-0">{user && user.username}</h6>
                 <i className="fas fa-angle-down mr-3 text-muted"> </i>
               </div>
-              <p className="text-muted">{user && user.phone}</p>
+              <p className="text-muted">{user && user.googleID ? user.email : user.phone}</p>
             </div>
           </div>
           <ul className="list text-muted mt-3 pl-0">

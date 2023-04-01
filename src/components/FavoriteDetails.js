@@ -1,14 +1,20 @@
 import { FaBed, FaBath } from "react-icons/fa";
 import { MdBedroomChild } from "react-icons/md";
+import { useLike } from "../hooks/useLike";
 
 function FavoriteDetails({ favorite }) {
+  const { disLike } = useLike();
+
+  const handleDislike = () => {
+    disLike(favorite._id);
+  }
   return (
     <div className="card border-0">
       <div className="row set-p justify-content-center">
         <div className="col px-0">
           <img
             className="image"
-            src="https://ik.imagekit.io/ryxb55mhk/Tranogasy/properties/img_1.jpg?updatedAt=1678881702711"
+            src={favorite.images.url}
           />
         </div>
         <div className="col">
@@ -54,6 +60,7 @@ function FavoriteDetails({ favorite }) {
             <p
               className="rating mb-0 px-2"
               style={{ fontSize: "3vw", backgroundColor: "#ec1c24" }}
+              onClick={handleDislike}
             >
               <strong>Effacer</strong>
             </p>
