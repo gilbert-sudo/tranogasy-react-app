@@ -50,7 +50,7 @@ export const useLogin = () => {
             setBootstrap("alert alert-success");
             setError(" Vous vous êtes connecté(e) maintenant!");
             localStorage.setItem("user", JSON.stringify(json));
-            dispatch(setUser(json));
+            dispatch(setUser(json.client));
             setIsLoading(false);
           }
         } catch (error) {
