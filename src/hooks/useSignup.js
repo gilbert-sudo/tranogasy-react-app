@@ -59,7 +59,7 @@ export const useSignup = () => {
                   );
                   setIsLoading(false);
                   localStorage.setItem("user", JSON.stringify(json));
-                  dispatch(setUser(json))
+                  dispatch(setUser(json.client))
 
                 }
                 if (!response.ok) {
