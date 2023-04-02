@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaLock, FaEyeSlash, FaEye, FaPhoneAlt } from "react-icons/fa";
 import { useLogin } from "../hooks/useLogin";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -9,6 +10,9 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
 
   const { login, isLoading, error, bootstrapClassname } = useLogin();
+  const navigate = useNavigate();
+
+  const topProperties = useSelector((state) => state.topProperties);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -24,6 +28,14 @@ const LoginPage = () => {
   };
 
   // Render the main content
+  useEffect(() => {
+    const verifyState = () => {
+      if (topProperties === null) {
+        navigate("/")
+      }
+    }
+    verifyState();
+  }, [topProperties])
 
   return (
     <>
