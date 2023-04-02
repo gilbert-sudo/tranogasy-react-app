@@ -17,7 +17,7 @@ import { useLogin } from "./hooks/useLogin";
 function NotFound() {
   const navigate = useNavigate();
   useEffect(() => {
-    navigate("/");
+    navigate("/index.html");
   }, [navigate]);
 
   return null;
