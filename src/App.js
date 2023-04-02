@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import PageLoader from "./pages/PageLoader";
 import PropertyDetailsPage from "./pages/PropertyDetailsPage";
@@ -13,15 +13,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { setUser } from "./redux/redux";
 import { useEffect } from "react";
 import { useLogin } from "./hooks/useLogin";
-
-function NotFound() {
-  const navigate = useNavigate();
-  useEffect(() => {
-    navigate("/index.html");
-  }, [navigate]);
-
-  return null;
-}
 
 function App() {
   // const topProperties = useSelector((state) => state.topProperties);
@@ -53,7 +44,6 @@ function App() {
 
   return (
     <div className="App">
-      <BrowserRouter>
         {topProperties && <Navbar />}
         <div className="pages">
           <Routes>
@@ -87,10 +77,9 @@ function App() {
               path="/favorite"
               element={user ? <FavoritePage /> : <Navigate to="/login" />}
             />
-            <Route path="*" element={<NotFound />} />
+            <Route path="*" element={<Navigate to="/loader" />} />
           </Routes>
         </div>
-      </BrowserRouter>
     </div>
   );
 }
