@@ -3,6 +3,7 @@ import { FaLock, FaEyeSlash, FaEye, FaPhoneAlt } from "react-icons/fa";
 import { useLogin } from "../hooks/useLogin";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import Swal from "sweetalert2";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -21,6 +22,12 @@ const LoginPage = () => {
   };
 
   const loginWithGoogle = async () => {
+    Swal.fire({
+      html:
+        '<img src="https://ik.imagekit.io/ryxb55mhk/Tranogasy/icons8-chrome.gif?updatedAt=1680426939815"><br>'+'Connecting with Google...',
+      focusConfirm: false,
+       showConfirmButton: false,
+    });
     window.open(
       `${process.env.REACT_APP_PROXY}/connexion/auth/google`,
       "_self"
@@ -31,11 +38,11 @@ const LoginPage = () => {
   useEffect(() => {
     const verifyState = () => {
       if (topProperties === null) {
-        navigate("/")
+        navigate("/");
       }
-    }
+    };
     verifyState();
-  }, [topProperties])
+  }, [topProperties]);
 
   return (
     <>
@@ -123,6 +130,7 @@ const LoginPage = () => {
                   </button>
                   <br></br>
                   {error && <div className={bootstrapClassname}>{error}</div>}
+                    
                   <div className="text-center pt-4 text-muted">
                     Vous n'avez pas de compte ?{" "}
                     <Link to="/signup">
@@ -133,11 +141,7 @@ const LoginPage = () => {
               </div>
               <div className="mx-3 my-2 py-2 bordert">
                 <div className="text-center py-3">
-                  <a
-                    href=""
-                    target="_blank"
-                    className="px-2"
-                  >
+                  <a href="" target="_blank" className="px-2">
                     <img
                       src="https://www.dpreview.com/files/p/articles/4698742202/facebook.jpeg"
                       alt=""
