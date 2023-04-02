@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import PageLoader from "./pages/PageLoader";
 import PropertyDetailsPage from "./pages/PropertyDetailsPage";
@@ -44,6 +44,7 @@ function App() {
 
   return (
     <div className="App">
+      <BrowserRouter>
         {topProperties && <Navbar />}
         <div className="pages">
           <Routes>
@@ -77,9 +78,9 @@ function App() {
               path="/favorite"
               element={user ? <FavoritePage /> : <Navigate to="/login" />}
             />
-            <Route path="*" element={<Navigate to="/loader" />} />
           </Routes>
         </div>
+      </BrowserRouter>
     </div>
   );
 }
