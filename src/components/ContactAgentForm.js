@@ -2,13 +2,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
 import { useMessage } from "../hooks/useMessage";
+import { useSelector } from "react-redux";
 
-const ContactAgentForm = ({ propertyId }) => {
+const ContactAgentForm = ({ propertyId, imageId, cityId }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState(null);
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
   const [resetInput, setResetInput] = useState(false); // new state
+  const client = useSelector((state) => state.user)
 
   const resetAllInputs = () => {
     setEmail("");
@@ -22,7 +24,8 @@ const ContactAgentForm = ({ propertyId }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    postMessage(name, phone, email, message, propertyId);
+    const userId = client._id;
+    postMessage(name, phone, email, message, propertyId, userId, imageId, cityId);
   };
 
   useEffect(() => {

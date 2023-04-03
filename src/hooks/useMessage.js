@@ -1,13 +1,26 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addBooking } from "../redux/redux";
 
 export const useMessage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [msgError, setMsgError] = useState(null);
   const [bootstrapClassname, setBootstrap] = useState(null);
   const [resetAgentInput, setResetAgentInput] = useState(false); // new state
+
+  const dispatch = useDispatch()
   //redux
 
-  const postMessage = async (name, phone, email, message, propertyId) => {
+  const postMessage = async (
+    name,
+    phone,
+    email,
+    message,
+    propertyId,
+    userId,
+    imageId,
+    cityId
+  ) => {
     setIsLoading(true);
     setMsgError(null);
 
@@ -38,9 +51,14 @@ export const useMessage = () => {
                 email,
                 message,
                 propertyId,
+                userId,
+                imageId,
+                cityId,
               }),
             }
           );
+
+          const json = await response.json();
 
           if (response.ok) {
             let msg = "Votre message a été envoyé avec succès";
@@ -49,7 +67,7 @@ export const useMessage = () => {
             setMsgError(msg);
             setIsLoading(false);
             setResetAgentInput(true);
-
+            dispatch(addBooking(json));
           } else if (response.errors) {
             let msg =
               response.errors.phone ||
@@ -93,5 +111,11 @@ export const useMessage = () => {
     }
   };
 
-  return { postMessage, isLoading, msgError, bootstrapClassname, resetAgentInput };
+  return {
+    postMessage,
+    isLoading,
+    msgError,
+    bootstrapClassname,
+    resetAgentInput,
+  };
 };

@@ -49,6 +49,8 @@ const PropertyDetails = () => {
               {/* agent contact form */}
               <ContactAgentForm
                 propertyId={propertiesDetails[0].property._id}
+                imageId={propertiesDetails[0].images[0]._id}
+                cityId={propertiesDetails[0].city._id}
               />
               {/* agent contact form */}
             </div>

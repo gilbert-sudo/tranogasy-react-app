@@ -101,12 +101,33 @@ const likedPropertiesSlice = createSlice({
 
 export const { setLikedPropreties, addLike, deleteLike } = likedPropertiesSlice.actions;
 
+//liked properties
+const bookingSlice = createSlice({
+  name: "booking",
+  initialState: null,
+  reducers: {
+    setBooking: (state, action) => {
+      return [...action.payload];
+    },
+    addBooking: (state, action) => {
+      state.push(action.payload);
+    },
+    // deleteLike: (state, action) => {
+    //   //action.payload is the id of the like
+    //   return state.filter((like) => like._id !== action.payload)
+    // },
+  },
+});
+
+export const { setBooking, addBooking } = bookingSlice.actions;
+
 export const store = configureStore({
   reducer: {
     user: userSlice.reducer,
     pagination: paginationSlice.reducer,
     topProperties: topPropertiesSlice.reducer,
     properties: propertiesSlice.reducer,
+    booking: bookingSlice.reducer,
     likedProperties: likedPropertiesSlice.reducer,
     googleLogin: googleLoginSlice.reducer,
   },
