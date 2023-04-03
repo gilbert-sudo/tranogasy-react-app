@@ -2,13 +2,28 @@ import { BiLogOutCircle } from "react-icons/bi";
 import { FaUserEdit, FaLock, FaPhoneAlt, FaMailBulk } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { useLogout } from "../hooks/useLogout"
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 
 const UserPage = () => {
   const { logout } = useLogout();
+  const navigate = useNavigate();
+
   //redux
   const user = useSelector((state) => state.user);
+
+  const topProperties = useSelector((state) => state.topProperties);
   // Render the main content
+  useEffect(() => {
+    const verifyState = () => {
+      if (topProperties === null) {
+        navigate("/");
+      }
+    };
+    verifyState();
+  }, [topProperties]);
+
 
   return (
     <>

@@ -4,10 +4,10 @@ import { setUser, setGoogleLogin } from "../redux/redux";
 import axios from "axios";
 
 export const useLogin = () => {
-
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [bootstrapClassname, setBootstrap] = useState(null);
+  const [client, setClient] = useState(null);
 
   //redux
   const dispatch = useDispatch();
@@ -53,6 +53,8 @@ export const useLogin = () => {
             localStorage.setItem("user", JSON.stringify(json));
             dispatch(setUser(json.client));
             setIsLoading(false);
+            setClient(json.client);
+            window.location.href="/";
           }
         } catch (error) {
           setBootstrap("alert alert-danger");
@@ -88,5 +90,5 @@ export const useLogin = () => {
     }
   };
 
-  return { loginWith, login, isLoading, error, bootstrapClassname };
+  return { loginWith, login, isLoading, error, bootstrapClassname, client };
 };
