@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import { FaLock, FaEyeSlash, FaEye, FaPhoneAlt } from "react-icons/fa";
 import { useLogin } from "../hooks/useLogin";
+import { useSignup } from "../hooks/useSignup";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { LoginSocialFacebook } from "reactjs-social-login";
 import Swal from "sweetalert2";
+import "./SocialButton.css"; // styles for the button
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -11,6 +14,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
 
   const { login, isLoading, error, bootstrapClassname } = useLogin();
+  const { signupWithFacebook } = useSignup();
   const navigate = useNavigate();
 
   const topProperties = useSelector((state) => state.topProperties);
@@ -24,15 +28,21 @@ const LoginPage = () => {
   const loginWithGoogle = async () => {
     Swal.fire({
       html:
-        '<img src="https://ik.imagekit.io/ryxb55mhk/Tranogasy/icons8-chrome.gif?updatedAt=1680426939815"><br>'+'Connecting with Google...',
+        '<img src="https://ik.imagekit.io/ryxb55mhk/Tranogasy/icons8-chrome.gif?updatedAt=1680426939815"><br>' +
+        "Connecting with Google...",
       focusConfirm: false,
-       showConfirmButton: false,
+      showConfirmButton: false,
     });
     window.open(
       `${process.env.REACT_APP_PROXY}/connexion/auth/google`,
       "_self"
     );
   };
+
+  //login with facebook
+  const loginWithFacebook = async (username, email, facebookID, thumbnail) => {
+    signupWithFacebook(username, email, facebookID, thumbnail);
+  }
 
   // Render the main content
   useEffect(() => {
@@ -63,7 +73,10 @@ const LoginPage = () => {
         }}
       />
       <div className="container">
-        <div className="row" style={{ marginTop: "70px" }}>
+        <div
+          className="row"
+          style={{ marginTop: "70px", marginBottom: "100px" }}
+        >
           <div className="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
             <div className="panel border bg-white">
               <div className="panel-heading">
@@ -130,7 +143,7 @@ const LoginPage = () => {
                   </button>
                   <br></br>
                   {error && <div className={bootstrapClassname}>{error}</div>}
-                    
+
                   <div className="text-center pt-4 text-muted">
                     Vous n'avez pas de compte ?{" "}
                     <Link to="/signup">
@@ -141,33 +154,43 @@ const LoginPage = () => {
               </div>
               <div className="mx-3 my-2 py-2 bordert">
                 <div className="text-center py-3">
-                  <a href="" target="_blank" className="px-2">
-                    <img
-                      src="https://www.dpreview.com/files/p/articles/4698742202/facebook.jpeg"
-                      alt=""
-                    />
-                  </a>
-                  <Link
-                    to="#"
-                    target="_blank"
-                    className="px-2"
-                    onClick={loginWithGoogle}
+                  <LoginSocialFacebook
+                    appId="943901416807958"
+                    onResolve={(response) => {
+                      console.log(response);
+                      loginWithFacebook(response.data.name, response.data.email, response.data.userID, response.data.picture.data.url);
+                    }}
+                    onReject={(error) => {
+                      console.log(error);
+                    }}
                   >
-                    <img
-                      src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png"
-                      alt=""
-                    />
-                  </Link>
-                  <a
-                    href="https://www.github.com"
-                    target="_blank"
-                    className="px-2"
-                  >
-                    <img
-                      src="https://www.freepnglogos.com/uploads/512x512-logo-png/512x512-logo-github-icon-35.png"
-                      alt=""
-                    />
-                  </a>
+                    <div className="row  align-items-center justify-content-center">
+                      {" "}
+                      <button className="facebook-button">
+                        <svg viewBox="0 0 24 24" className="facebook-icon">
+                          <path
+                            fill="#1877f2"
+                            d="M21.91 0H2.09C.942 0 0 .942 0 2.09v19.82C0 23.058.942 24 2.09 24h19.82c1.148 0 2.09-.942 2.09-2.09V2.09c0-1.148-.942-2.09-2.09-2.09z"
+                          />
+                          <path
+                            fill="#fff"
+                            d="M15.24 23V14.82h2.89l.43-3.37h-3.32v-2.15c0-.98.27-1.64 1.67-1.64h1.78V4.13a24.18 24.18 0 00-2.61-.13c-2.58 0-4.35 1.58-4.35 4.5v2.5H9.56v3.37h3.33V23h2.35z"
+                          />
+                        </svg>
+                        <span>Connecter avec Facebook</span>
+                      </button>{" "}
+                    </div>
+                  </LoginSocialFacebook>
+                  <div className="row  align-items-center justify-content-center mt-3 mb-5">
+                    <button className="google-button" onClick={loginWithGoogle}>
+                      <img
+                        src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png"
+                        alt=""
+                        className="google-icon"
+                      />
+                      Connecter avec Google 
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

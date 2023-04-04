@@ -112,14 +112,13 @@ const bookingSlice = createSlice({
     addBooking: (state, action) => {
       state.push(action.payload);
     },
-    // deleteLike: (state, action) => {
-    //   //action.payload is the id of the like
-    //   return state.filter((like) => like._id !== action.payload)
-    // },
+    deleteBooking: (state, action) => {
+      return state.filter((booking) => booking._id !== action.payload)
+    },
   },
 });
 
-export const { setBooking, addBooking } = bookingSlice.actions;
+export const { setBooking, addBooking, deleteBooking } = bookingSlice.actions;
 
 export const store = configureStore({
   reducer: {

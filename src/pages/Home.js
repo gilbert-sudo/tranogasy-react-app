@@ -11,7 +11,7 @@ import { useEffect } from "react";
 const Home = () => {
   //redux
   const dispatch = useDispatch();
-  const { loadLikes } = useLoader();
+  const { loadLikes, loadBooking } = useLoader();
   const paginationIndex = useSelector((state) => state.pagination);
   const topProperties = useSelector((state) => state.topProperties);
   const likedPropertiesState = useSelector((state) => state.likedProperties);
@@ -34,11 +34,12 @@ const Home = () => {
         if (!likedPropertiesState) {
           const userId = user._id;
           loadLikes(userId);
+          loadBooking(userId);
         }
       }
     };
     pageLoader();
-  }, [user, loadLikes, likedPropertiesState]);
+  }, [user, likedPropertiesState]);
 
   return (
     <div className="home">

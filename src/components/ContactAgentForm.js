@@ -2,37 +2,83 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
 import { useMessage } from "../hooks/useMessage";
+import { useBooking } from "../hooks/useBooking";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const ContactAgentForm = ({ propertyId, imageId, cityId }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState(null);
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
-  const [resetInput, setResetInput] = useState(false); // new state
-  const client = useSelector((state) => state.user)
+  const client = useSelector((state) => state.user);
+  const booking = useSelector((state) => state.booking);
+  const [isBooked, setIsBooked] = useState(false);
+  const [messageId, setMessageId] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const resetAllInputs = () => {
     setEmail("");
     setMessage("");
     setName("");
     setPhone("");
-    setResetInput(false); // reset the resetInput state
-  }
+  };
 
-  const { postMessage, isLoading, msgError, bootstrapClassname, resetAgentInput } = useMessage();
+  const {
+    postMessage,
+    isLoading,
+    msgError,
+    bootstrapClassname,
+    resetAgentInput,
+  } = useMessage();
+
+  const { cancelBooking } = useBooking();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const userId = client._id;
-    postMessage(name, phone, email, message, propertyId, userId, imageId, cityId);
+    postMessage(
+      name,
+      phone,
+      email,
+      message,
+      propertyId,
+      userId,
+      imageId,
+      cityId
+    );
+  };
+
+  const cancelMessage = () => {
+    cancelBooking(messageId);
+    setIsBooked(false);
+    setErrorMessage("Votre demande a été annulée");
+  };
+
+  const verifyBookingState = () => {
+    if (client) {
+      const message = booking.filter(
+        (booking) =>
+          booking.user._id === client._id && booking.property._id === propertyId
+      );
+      if (message.length !== 0 && message.length === 1) {
+        setMessageId(message[0]._id);
+        setIsBooked(true);
+      }
+    }
   };
 
   useEffect(() => {
     if (resetAgentInput) {
       resetAllInputs();
     }
-  }, [resetAgentInput, resetInput]);
+  }, [resetAgentInput]);
+
+  useEffect(() => {
+    if (booking) {
+      verifyBookingState();
+    }
+  }, [booking]);
 
   return (
     <div className="bg-white widget border rounded">
@@ -54,6 +100,7 @@ const ContactAgentForm = ({ propertyId, imageId, cityId }) => {
               className="form-control"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              disabled={isBooked || !client}
               // required="ON"
             />
           </div>
@@ -70,6 +117,7 @@ const ContactAgentForm = ({ propertyId, imageId, cityId }) => {
               className="form-control"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
+              disabled={isBooked || !client}
               // required="ON"
             />
           </div>
@@ -90,6 +138,7 @@ const ContactAgentForm = ({ propertyId, imageId, cityId }) => {
               className="form-control"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              disabled={isBooked || !client}
             />
           </div>
         </div>
@@ -103,19 +152,42 @@ const ContactAgentForm = ({ propertyId, imageId, cityId }) => {
             onChange={(e) => setMessage(e.target.value)}
             id="message"
             className="form-control"
+            disabled={isBooked || !client}
           ></textarea>
         </div>
-        <div className="form-group">
-          <input
-            type="submit"
-            id="phone"
-            className="btn btn-primary"
-            defaultValue="Envoyer le message"
-            disabled={isLoading}
-          />
-        </div>
+
+        {isBooked === false && (
+          <div className="form-group">
+            <input
+              type="submit"
+              id="phone"
+              className="btn btn-primary"
+              defaultValue="Envoyer le message"
+              disabled={isLoading || !client}
+            />
+          </div>
+        )}
       </form>
-      {msgError && <div className={bootstrapClassname}>{msgError}</div>}
+      {isBooked === true && (
+        <div className="form-group">
+          <button className="btn btn-danger" onClick={cancelMessage}>
+            Annuler ma reservation
+          </button>
+        </div>
+      )}
+      {msgError && (
+        <div className={bootstrapClassname}>
+          {errorMessage && errorMessage ? errorMessage : msgError}
+        </div>
+      )}
+      {!client && (
+        <div className="alert alert-danger">
+          Veuillez d'abord vous connecter pour envoyer une demande{" "}
+          <Link to="/login">
+            <u style={{ color: "blue" }}>Se connecter</u>
+          </Link>
+        </div>
+      )}
     </div>
   );
 };
