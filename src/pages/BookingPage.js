@@ -1,21 +1,9 @@
 import { useSelector } from "react-redux";
 import BookingDetails from "../components/BookingDetails";
-import { useLoader } from "../hooks/useLoader";
-import { useEffect } from "react";
+
 
 const BookingPage = () => {
-  const { loadBooking } = useLoader();
   const bookings = useSelector((state) => state.booking);
-  const user = useSelector((state) => state.user);
-
-  useEffect(() => {
-    const verifyState = () => {
-      if (bookings === null) {
-        loadBooking(user._id)
-      }
-    }
-    verifyState();
-  }, [bookings, loadBooking, user])
 
   return (
     <>

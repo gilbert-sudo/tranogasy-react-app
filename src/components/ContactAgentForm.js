@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useMessage } from "../hooks/useMessage";
 import { useBooking } from "../hooks/useBooking";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const ContactAgentForm = ({ propertyId, imageId, cityId }) => {
   const [name, setName] = useState("");
@@ -51,19 +52,21 @@ const ContactAgentForm = ({ propertyId, imageId, cityId }) => {
   const cancelMessage = () => {
     cancelBooking(messageId);
     setIsBooked(false);
-    setErrorMessage("Votre demande a été annulé");
+    setErrorMessage("Votre demande a été annulée");
   };
 
   const verifyBookingState = () => {
-    const message = booking.filter(
-      (booking) =>
-        booking.user._id === client._id && booking.property._id === propertyId
-    );
-    if (message.length !== 0 && message.length === 1) {
-      setMessageId(message[0]._id);
-      setIsBooked(true)
-    } 
-  }
+    if (client) {
+      const message = booking.filter(
+        (booking) =>
+          booking.user._id === client._id && booking.property._id === propertyId
+      );
+      if (message.length !== 0 && message.length === 1) {
+        setMessageId(message[0]._id);
+        setIsBooked(true);
+      }
+    }
+  };
 
   useEffect(() => {
     if (resetAgentInput) {
@@ -76,7 +79,6 @@ const ContactAgentForm = ({ propertyId, imageId, cityId }) => {
       verifyBookingState();
     }
   }, [booking]);
-
 
   return (
     <div className="bg-white widget border rounded">
@@ -98,6 +100,7 @@ const ContactAgentForm = ({ propertyId, imageId, cityId }) => {
               className="form-control"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              disabled={isBooked || !client}
               // required="ON"
             />
           </div>
@@ -114,6 +117,7 @@ const ContactAgentForm = ({ propertyId, imageId, cityId }) => {
               className="form-control"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
+              disabled={isBooked || !client}
               // required="ON"
             />
           </div>
@@ -134,6 +138,7 @@ const ContactAgentForm = ({ propertyId, imageId, cityId }) => {
               className="form-control"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              disabled={isBooked || !client}
             />
           </div>
         </div>
@@ -147,6 +152,7 @@ const ContactAgentForm = ({ propertyId, imageId, cityId }) => {
             onChange={(e) => setMessage(e.target.value)}
             id="message"
             className="form-control"
+            disabled={isBooked || !client}
           ></textarea>
         </div>
 
@@ -157,7 +163,7 @@ const ContactAgentForm = ({ propertyId, imageId, cityId }) => {
               id="phone"
               className="btn btn-primary"
               defaultValue="Envoyer le message"
-              disabled={isLoading}
+              disabled={isLoading || !client}
             />
           </div>
         )}
@@ -169,7 +175,19 @@ const ContactAgentForm = ({ propertyId, imageId, cityId }) => {
           </button>
         </div>
       )}
-      {msgError && <div className={bootstrapClassname}>{errorMessage && errorMessage ? errorMessage : msgError}</div>}
+      {msgError && (
+        <div className={bootstrapClassname}>
+          {errorMessage && errorMessage ? errorMessage : msgError}
+        </div>
+      )}
+      {!client && (
+        <div className="alert alert-danger">
+          Veuillez d'abord vous connecter pour envoyer une demande{" "}
+          <Link to="/login">
+            <u style={{ color: "blue" }}>Se connecter</u>
+          </Link>
+        </div>
+      )}
     </div>
   );
 };

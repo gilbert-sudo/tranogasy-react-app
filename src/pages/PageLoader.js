@@ -6,7 +6,6 @@ import { setTopProperties } from "../redux/redux";
 const PageLoader = () => {
 
   const navigate = useNavigate();
-
   //redux
   const dispatch = useDispatch();
   const topProperties = useSelector((state) => state.topProperties);
@@ -33,6 +32,8 @@ const PageLoader = () => {
       }
     };
     fetchTopProperties();
+
+
 
     // Redirect the user when data is loaded
   }, [dispatch, topProperties]);
