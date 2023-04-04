@@ -2,7 +2,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { BsFillHouseAddFill } from "react-icons/bs";
 import { ImLocation } from "react-icons/im";
 import Swal from "sweetalert2";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateActiveLink } from "../redux/redux";
 import { useEffect } from "react";
 
@@ -11,10 +11,39 @@ const CarouselDetails = ({ property, images, city }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const user = useSelector((state) => state.user);
+
+  function handleBuyClick() {
+    if (user) {
+      // Scroll to #contactAgent section
+      window.scrollTo({
+        top: document.getElementById("contactAgent").offsetTop,
+        behavior: "smooth",
+      });
+    } else {
+      Swal.fire({
+        title: "<strong>Vous êtes déconnecté(e)</strong>",
+        icon: "warning",
+        html: `Pour louer cette maison , veuillez vous connecter ou créer un compte. Merci !`,
+        showCloseButton: true,
+        showCancelButton: true,
+        focusConfirm: false,
+        confirmButtonText: '<i class="fa fa-thumbs-up"></i> Se connecter',
+        confirmButtonColor: "#7cbd1e",
+        cancelButtonText: '<i class="fa fa-thumbs-down"></i> Annuler',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          dispatch(updateActiveLink("/login"));
+          navigate("/login");
+        }
+      });
+    }
+  }
+
   useEffect(() => {
     const verifyLocation = () => {
       dispatch(updateActiveLink("/"));
-    }
+    };
     verifyLocation();
   }, [location]);
 
@@ -51,27 +80,7 @@ const CarouselDetails = ({ property, images, city }) => {
               <div className="col-md-12">
                 <p>
                   <a
-                    // href="#contactAgent"
-                    onClick={(e) => {
-                      Swal.fire({
-                        title: "<strong>Vous êtes déconnecté(e)</strong>",
-                        icon: "warning",
-                        html: `Pour louer cette maison , veuillez vous connecter ou créer un compte. Merci !`,
-                        showCloseButton: true,
-                        showCancelButton: true,
-                        focusConfirm: false,
-                        confirmButtonText:
-                          '<i class="fa fa-thumbs-up"></i> Se connecter',
-                        confirmButtonColor: "#7cbd1e",
-                        cancelButtonText:
-                          '<i class="fa fa-thumbs-down"></i> Annuler',
-                      }).then((result) => {
-                        if (result.isConfirmed) {
-                          dispatch(updateActiveLink("/login"));
-                          navigate("/login");
-                        }
-                      });
-                    }}
+                    onClick={handleBuyClick}
                     className="btn btn-white btn-outline-white py-2 px-3 rounded-0 btn-2"
                   >
                     <BsFillHouseAddFill className="mr-2 h3" /> Louer cette

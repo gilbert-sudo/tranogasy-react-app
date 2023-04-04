@@ -22,7 +22,7 @@ const UserPage = () => {
       }
     };
     verifyState();
-  }, [topProperties]);
+  }, [topProperties, navigate]);
 
 
   return (
