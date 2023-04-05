@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { FaPaste } from "react-icons/fa";
 import { ImFacebook2 } from "react-icons/im";
 import { useLogin } from "../hooks/useLogin";
 
@@ -16,14 +15,6 @@ const FacebookLogin = () => {
     loginWithFacebookID(facebookID);
   };
 
-  const handlePaste = async () => {
-    try {
-      const clipboardText = await navigator.clipboard.readText();
-      setFacebookID(clipboardText);
-    } catch (err) {
-      console.log('Failed to read clipboard text: ', err);
-    }
-  };
 
   return (
     <>
@@ -67,9 +58,6 @@ const FacebookLogin = () => {
                         required
                         onChange={(e) => setFacebookID(e.target.value)}
                       />
-                      <button type="button" className="btn btn-primary" onClick={handlePaste}>
-                        <FaPaste/> Coller
-                      </button>
                     </div>
                   </div>
 
