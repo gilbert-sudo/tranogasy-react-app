@@ -41,7 +41,6 @@ export const useSignup = () => {
         setIsLoading(false);
         localStorage.setItem("user", JSON.stringify(json));
         dispatch(setUser(json.client));
-        window.location.href="/";
       }
       if (!response.ok) {
         setBootstrap("alert alert-danger");
