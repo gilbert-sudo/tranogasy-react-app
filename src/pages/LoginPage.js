@@ -189,7 +189,7 @@ const LoginPage = () => {
         
                     <div className="row  align-items-center justify-content-center">
                       {" "}
-                      <Link to="/facebook" className="facebook-button">
+                      <a href="https://tranogasy.onrender.com/facebook" target="_blank" className="facebook-button">
                         <svg viewBox="0 0 24 24" className="facebook-icon">
                           <path
                             fill="#1877f2"
@@ -201,7 +201,7 @@ const LoginPage = () => {
                           />
                         </svg>
                         <span>Connecter avec Facebook</span>
-                      </Link>{" "}
+                      </a>{" "}
                     </div>
                   <div className="row  align-items-center justify-content-center mt-3 mb-5">
                     <button className="google-button" onClick={loginWithGoogle}>
