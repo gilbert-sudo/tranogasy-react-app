@@ -89,7 +89,7 @@ const FacebookLogin = () => {
                   <div className="row  align-items-center justify-content-center">
                     {" "}
                     <a
-                      href={process.env.REACT_APP_CLIENT+"/facebook"}
+                      href="/facebook"
                       target="_blank"
                       className="facebook-button"
                     >
