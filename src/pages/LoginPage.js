@@ -190,6 +190,15 @@ const LoginPage = () => {
                       />
                       Connecter avec Google 
                     </button>
+                    <br />
+                    <a href={process.env.REACT_APP_PROXY} target="_blank" className="google-button">
+                      <img
+                        src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png"
+                        alt=""
+                        className="google-icon"
+                      />
+                      Connecter avec Google 
+                    </a>
                   </div>
                 </div>
               </div>
