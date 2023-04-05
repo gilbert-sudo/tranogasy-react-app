@@ -189,7 +189,7 @@ const LoginPage = () => {
         
                     <div className="row  align-items-center justify-content-center">
                       {" "}
-                      <Link to="/facebook" className="facebook-button">
+                      <Link to="/facebook-login" className="facebook-button">
                         <svg viewBox="0 0 24 24" className="facebook-icon">
                           <path
                             fill="#1877f2"

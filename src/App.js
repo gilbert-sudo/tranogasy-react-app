@@ -9,6 +9,7 @@ import MessagePage from "./pages/MessagePage";
 import BookingPage from "./pages/BookingPage";
 import FavoritePage from "./pages/FavoritePage";
 import FacebookPage from "./pages/FacebookPage";
+import FacebookLogin from "./pages/FacebookLogin";
 import Navbar from "./components/Navbar";
 import { useSelector, useDispatch } from "react-redux";
 import { setUser } from "./redux/redux";
@@ -78,6 +79,10 @@ function App() {
             <Route
               path="/favorite"
               element={user ? <FavoritePage /> : <Navigate to="/login" />}
+            />
+            <Route
+              path="//facebook-login"
+              element={<FacebookLogin />}
             />
             <Route
               path="/facebook"
