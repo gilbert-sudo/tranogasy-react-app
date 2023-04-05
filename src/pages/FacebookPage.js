@@ -9,7 +9,7 @@ import "./SocialButton.css"; // styles for the button
 
 const LoginPage = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [facebookID, setFacebookID] = useState("");
+  const [facebookID, setFacebookID] = useState(null);
 
   const { isLoading, error, bootstrapClassname } = useLogin();
   const { signupWithFacebook } = useSignup();
@@ -27,7 +27,7 @@ const LoginPage = () => {
   };
 
 
-  if (!user) {
+  if (!facebookID) {
     return (
       <>
         <meta charSet="utf-8" />
@@ -130,7 +130,7 @@ const LoginPage = () => {
   } else {
     return(
       <div className="test" style={{marginTop: "100px", marginLeft:"15px"}}>
-        <h>Votre fb id: {facebookID}</h>
+        <h>Votre fb id: <strong>{facebookID}</strong></h>
       </div>
     );
   }
