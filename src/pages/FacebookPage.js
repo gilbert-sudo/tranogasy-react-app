@@ -27,7 +27,7 @@ const LoginPage = () => {
   };
 
 
-  if (!user) {
+  if (!facebookID) {
     return (
       <>
         <meta charSet="utf-8" />
