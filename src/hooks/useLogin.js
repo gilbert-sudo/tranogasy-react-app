@@ -90,5 +90,44 @@ export const useLogin = () => {
     }
   };
 
-  return { loginWith, login, isLoading, error, bootstrapClassname, client };
+  const loginWithFacebookID = async (facebookID) => {
+    setIsLoading(true);
+
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_PROXY}/api/clients/connect/${facebookID}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+        }
+      );
+
+      const json = await response.json();
+
+      if (!response.ok) {
+        setError(json.error);
+        setIsLoading(false);
+        setBootstrap("alert alert-danger");
+      }
+
+      if (response.ok) {
+        setBootstrap("alert alert-success");
+        setError("Vous vous êtes connecté(e) maintenant!");
+        localStorage.setItem("user", JSON.stringify(json));
+        dispatch(setUser(json.client));
+        setIsLoading(false);
+        setClient(json.client);
+        window.location.href="/";
+      }
+    } catch (error) {
+      setBootstrap("alert alert-danger");
+      setError("Une erreur s'est produite lors de l'envoi du message.");
+      setIsLoading(false);
+    }
+  };
+
+  return { loginWith, loginWithFacebookID, login, isLoading, error, bootstrapClassname, client };
 };
