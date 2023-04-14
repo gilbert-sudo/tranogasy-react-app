@@ -1,6 +1,15 @@
+import { useBooking } from "../hooks/useBooking";
+
 import { Link } from "react-router-dom";
 
 function BookingDetails({ booking }) {
+
+  const { cancelBooking } = useBooking();
+
+  const cancelMessage = (messageId) => {
+    cancelBooking(messageId);
+  };
+
   return (
     <div className="card border-0">
       <div className="row set-p justify-content-center">
@@ -65,6 +74,7 @@ function BookingDetails({ booking }) {
             <p
               className="rating mb-0 px-2"
               style={{ fontSize: "3vw", backgroundColor: "#ec1c24" }}
+              onClick={(e) => cancelMessage(booking._id)}
             >
               <strong>Annuler</strong>
             </p>
