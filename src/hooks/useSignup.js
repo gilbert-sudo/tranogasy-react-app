@@ -54,10 +54,10 @@ export const useSignup = () => {
     }
   };
 
-  const signup = async (username, email, phone, password, confirmPassword) => {
+  const signup = async (username, email, phoneNumber, password, confirmPassword) => {
     setIsLoading(true);
     setError(null);
-
+    const phone = phoneNumber.replace(/\s/g, "");
     if (
       !username.length ||
       !phone.length ||

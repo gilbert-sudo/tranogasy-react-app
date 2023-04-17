@@ -12,10 +12,10 @@ export const useLogin = () => {
   //redux
   const dispatch = useDispatch();
 
-  const login = async (phoneNumber, password) => {
+  const login = async (phone, password) => {
     setIsLoading(true);
     setError(null);
-
+   const phoneNumber = phone.replace(/\s/g, "");
     if (!phoneNumber.length || !password.length) {
       setBootstrap("alert alert-warning");
       setError("Veuillez remplir les champs obligatoires.");
