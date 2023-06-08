@@ -54,22 +54,27 @@ export const useSignup = () => {
     }
   };
 
-  const signup = async (username, email, phoneNumber, password, confirmPassword) => {
+  const signup = async (inputedUsername, inputedEmail, inputedPhone, inputedPassword, inputedConfirmPassword) => {
     setIsLoading(true);
     setError(null);
-    const phone = phoneNumber.replace(/\s/g, "");
     if (
-      !username.length ||
-      !phone.length ||
-      !password.length ||
-      !confirmPassword.length
+      !inputedUsername.length ||
+      !inputedPhone.length ||
+      !inputedPassword.length ||
+      !inputedConfirmPassword.length
     ) {
       setBootstrap("alert alert-warning");
       setError("Veuillez remplir les champs obligatoires.");
       setIsLoading(false);
       return;
     }
-
+    const username = inputedUsername.trim().replace(/\s{2,}/g, ' ').replace(/(^|\s)\S/g, function(match) {
+      return match.toUpperCase(); // capitalize first letter of each word
+    });
+    const phone = inputedPhone.trim().replace(/\s/g, "");
+    const password = inputedPassword.trim().replace(/\s/g, "");
+    const confirmPassword = inputedConfirmPassword.trim().replace(/\s/g, "");
+    const email = inputedEmail.trim().replace(/\s/g, "");
     const phoneNumberRegex = /^(03[2,3,4,8])(\d{7})$|^(3[2,3,4,8])(\d{7})$/;
     const phoneNumber = phone;
 
